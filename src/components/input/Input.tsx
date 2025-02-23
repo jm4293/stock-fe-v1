@@ -1,38 +1,57 @@
-import { useDeviceLayout } from "../../hooks/useDeviceLayout";
+import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 
 interface IProps {
-  type: "text" | "email" | "password";
+  type: 'text' | 'email' | 'password' | 'date' | 'datetime-local';
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+  name?: string;
   placeholder?: string;
-  borderColor?: "gray" | "purple";
+  disabled?: boolean;
+  borderColor?: 'gray' | 'green';
+  optional?: boolean;
+  ref?: React.RefObject<HTMLInputElement>;
   children?: React.ReactNode;
 }
 
 export const Input = (props: IProps) => {
-  const { type, value, onChange, placeholder, borderColor, children } = props;
+  const {
+    type,
+    value,
+    onChange,
+    className,
+    name,
+    placeholder,
+    disabled,
+    borderColor,
+    optional = false,
+    ref,
+    children,
+  } = props;
 
   const { isMobile } = useDeviceLayout();
 
   const border_color = () => {
     switch (borderColor) {
-      case "gray":
-        return "#CDCDCD";
-      case "purple":
-        return "#9470DC";
+      case 'gray':
+        return 'border border-gray-300';
+      case 'green':
+        return 'border border-green-400';
       default:
-        return "#CDCDCD";
+        return 'border border-gray-300';
     }
   };
 
   return (
     <input
-      className={`${isMobile ? "py-[12px] px-[16px]" : "py-[24px] px-[20px]"} w-full  font-normal  border-[1px] rounded-xl cursor-pointer`}
-      style={{ borderColor: border_color() }}
+      ref={ref}
+      name={name}
+      className={`${isMobile ? 'py-[12px] px-[16px]' : 'py-[24px] px-[20px]'} ${border_color()} ${className} w-full`}
       type={type}
       value={value}
       onChange={onChange}
-      placeholder={placeholder}
+      placeholder={`${optional ? '[선택]' : ''} ${placeholder}`}
+      disabled={disabled}
     />
   );
 };

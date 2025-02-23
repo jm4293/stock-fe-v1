@@ -1,4 +1,4 @@
 export * from './NavbarBoard';
 export * from './NavbarHome';
-export * from './NavbarMap';
+export * from './NavbarStock';
 export * from './NavbarMyPage';

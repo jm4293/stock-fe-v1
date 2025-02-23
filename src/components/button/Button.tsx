@@ -1,23 +1,35 @@
-import { useDeviceLayout } from "../../hooks/useDeviceLayout";
+import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 
 interface IProps {
   text: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
+  color?: 'gray' | 'green';
   disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 export const Button = (props: IProps) => {
-  const { text, onClick, disabled } = props;
+  const { text, onClick, color = 'gray', disabled, children } = props;
 
   const { isMobile } = useDeviceLayout();
 
+  const style = () => {
+    switch (color) {
+      case 'gray':
+        return 'bg-gray-400 text-white hover:bg-gray-500';
+      case 'green':
+        return 'bg-green-500 text-white hover:bg-green-600';
+      default:
+        return 'bg-gray-300 text-white';
+    }
+  };
+
   return (
     <button
-      className={`${isMobile ? "py-[12px] px-[16px]" : "py-[24px] px-[20px]"} w-full text-active-text border-none rounded-xl  bg-active-bg disabled:bg-disabled-bg disabled:text-disabled-text`}
+      className={`${isMobile ? 'py-[12px] px-[16px]' : 'py-[24px] px-[20px]'} ${style()} w-full`}
       onClick={onClick}
-      disabled={disabled}
-    >
-      {text}
+      disabled={disabled}>
+      <p className="whitespace-nowrap">{text}</p>
     </button>
   );
 };

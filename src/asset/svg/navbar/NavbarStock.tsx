@@ -1,20 +1,19 @@
-import { ISvgNavbarProps } from "./interface";
-import { useDeviceLayout } from "../../../hooks/useDeviceLayout";
+import { ISvgNavbarProps } from './interface';
+import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 
-export const NavbarMap = ({ color, onClick }: ISvgNavbarProps) => {
+export const NavbarStock = ({ color, onClick }: ISvgNavbarProps) => {
   const { isMobile } = useDeviceLayout();
 
   return (
     <svg
-      width={isMobile ? "60" : "90"}
-      height={isMobile ? "52" : "68"}
+      width={isMobile ? '60' : '90'}
+      height={isMobile ? '52' : '68'}
       viewBox="0 0 36 68"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       id="map"
       className="cursor-pointer"
-      onClick={onClick}
-    >
+      onClick={onClick}>
       <path
         d="M14.7705 5.33272L14.8332 5.33105L14.8942 5.33267C14.9242 5.33439 14.9541 5.33749 14.9841 5.34203L15.0055 5.34711C15.1194 5.3654 15.2326 5.40608 15.3404 5.46997L15.4096 5.51469L22.17 10.2684L28.926 5.51916C29.5498 5.08077 30.3947 5.4748 30.4919 6.19792L30.5012 6.33724V20.5139C30.5012 20.793 30.3847 21.0571 30.1836 21.2449L30.0763 21.3321L22.743 26.4873C22.3871 26.7374 21.9591 26.7165 21.6392 26.5181L14.8327 21.7297L8.07315 26.4827C7.44953 26.9211 6.60454 26.5271 6.50729 25.8039L6.49805 25.6647V11.4879C6.49805 11.2089 6.61453 10.9447 6.81554 10.7571L6.92295 10.6699L14.2563 5.51469C14.3416 5.45471 14.4311 5.41031 14.5222 5.3802L14.6855 5.34285L14.7705 5.33272ZM28.5012 8.26259L23.1679 12.0118V23.7438L28.5012 19.9946V8.26259ZM13.8314 8.25812L8.49805 12.0073V23.7393L13.8314 19.9901V8.25812ZM15.8346 8.25812V19.9901L21.1679 23.7393V12.0073L15.8346 8.25812Z"
         fill={color}

@@ -1,34 +1,34 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-import { ResponseConfig } from "../../types/interface/dto";
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { ResConfig } from '@/types/interface/res.config';
 
-interface IGetRequest<D> {
+interface IGetReq<D> {
   url: string;
   params?: D;
-  headers?: AxiosRequestConfig["headers"];
+  headers?: AxiosRequestConfig['headers'];
 }
 
-interface IPostRequest<D> {
+interface IPostReq<D> {
   url: string;
   data: D;
-  headers?: AxiosRequestConfig["headers"];
+  headers?: AxiosRequestConfig['headers'];
 }
 
-interface IPutRequest<D> {
+interface IPutReq<D> {
   url: string;
   data: D;
-  headers?: AxiosRequestConfig["headers"];
+  headers?: AxiosRequestConfig['headers'];
 }
 
-interface IDeleteRequest<D> {
+interface IDeleteReq<D> {
   url: string;
   data?: D;
-  headers?: AxiosRequestConfig["headers"];
+  headers?: AxiosRequestConfig['headers'];
 }
 
-interface IPatchRequest<D> {
+interface IPatchReq<D> {
   url: string;
   data: D;
-  headers?: {};
+  headers?: AxiosRequestConfig['headers'];
 }
 
 export class AxiosConfig {
@@ -37,7 +37,7 @@ export class AxiosConfig {
   constructor() {
     this._axiosInstance = axios.create({
       baseURL: `${import.meta.env.VITE_API_URL}:${import.meta.env.VITE_API_PORT}/${import.meta.env.VITE_API_PREFIX}`,
-      headers: { "Content-Type": "application/json" },
+      headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     });
 
@@ -60,39 +60,34 @@ export class AxiosConfig {
     );
   }
 
-  /**
-   * T - Generic, Response Data Type
-   * D - Generic, Request Data Type
-   */
-
-  protected async get<T, D>({ url, params, headers }: IGetRequest<D>) {
-    return await this._axiosInstance.get<ResponseConfig<T>>(url, {
+  protected async get<T, D>({ url, params, headers }: IGetReq<D>) {
+    return await this._axiosInstance.get<ResConfig<T>>(url, {
       params,
       headers,
     });
   }
 
-  protected async post<T, D>({ url, data, headers }: IPostRequest<D>) {
-    return await this._axiosInstance.post<ResponseConfig<T>>(url, data, {
+  protected async post<T, D>({ url, data, headers }: IPostReq<D>) {
+    return await this._axiosInstance.post<ResConfig<T>>(url, data, {
       headers,
     });
   }
 
-  protected async put<T, D>({ url, data, headers }: IPutRequest<D>) {
-    return await this._axiosInstance.put<ResponseConfig<T>>(url, data, {
+  protected async put<T, D>({ url, data, headers }: IPutReq<D>) {
+    return await this._axiosInstance.put<ResConfig<T>>(url, data, {
       headers,
     });
   }
 
-  protected async delete<T, D>({ url, data, headers }: IDeleteRequest<D>) {
-    return await this._axiosInstance.delete<ResponseConfig<T>>(url, {
+  protected async delete<T, D>({ url, data, headers }: IDeleteReq<D>) {
+    return await this._axiosInstance.delete<ResConfig<T>>(url, {
       data,
       headers,
     });
   }
 
-  protected async patch<T, D>({ url, data, headers }: IPatchRequest<D>) {
-    return await this._axiosInstance.patch<ResponseConfig<T>>(url, data, {
+  protected async patch<T, D>({ url, data, headers }: IPatchReq<D>) {
+    return await this._axiosInstance.patch<ResConfig<T>>(url, data, {
       headers,
     });
   }

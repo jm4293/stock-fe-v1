@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { NavbarBoard, NavbarHome, NavbarMap, NavbarMyPage } from '../../asset/svg';
+import { NavbarBoard, NavbarHome, NavbarStock, NavbarMyPage } from '../../asset/svg';
 import { memo, useCallback, useState } from 'react';
 import { useDeviceLayout } from '../../hooks/useDeviceLayout';
 
@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <NavbarHome color={pathname === '/home' ? '#9470DC' : '#989898'} onClick={onClickHandler} />
-      <NavbarMap color={pathname === '/map' ? '#9470DC' : '#989898'} onClick={onClickHandler} />
+      <NavbarStock color={pathname === '/stock' ? '#9470DC' : '#989898'} onClick={onClickHandler} />
       <NavbarBoard color={pathname === '/board' ? '#9470DC' : '#989898'} onClick={onClickHandler} />
       <NavbarMyPage color={pathname === '/mypage' ? '#9470DC' : '#989898'} onClick={onClickHandler} />
     </div>
