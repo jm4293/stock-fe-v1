@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { IModalProps } from './interface';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { modalStore } from '../../store';
+import { modalStore } from '@/store/modal';
 
 export const Modal = ({ children }: IModalProps) => {
   const isModalOpen = useAtomValue(modalStore.isModalOpenAtom);

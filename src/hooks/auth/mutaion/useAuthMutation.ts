@@ -2,9 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import AuthApi from '../../../api-url/auth/auth.api';
 import { ICheckDuplicateEmailReq, ILoginReq, ISignUpReq } from '@/types/interface/auth/req';
+import { useSetAtom } from 'jotai';
+import { jwtStore } from '@/store/jwt';
 
 export default function useAuthMutation() {
   const navigate = useNavigate();
+
+  const setJwtToken = useSetAtom(jwtStore.setJwt);
 
   const onSignUpMutation = useMutation({
     mutationFn: (dto: ISignUpReq) => AuthApi.postSignUp(dto),
@@ -21,7 +25,11 @@ export default function useAuthMutation() {
   const onLoginInMutation = useMutation({
     mutationFn: (dto: ILoginReq) => AuthApi.postSignIn(dto),
     onSuccess: (res) => {
-      // navigate('/home');
+      const { accessToken } = res.data.data;
+
+      setJwtToken(accessToken);
+
+      navigate('/home');
     },
     onError: (err) => {
       console.error(err);

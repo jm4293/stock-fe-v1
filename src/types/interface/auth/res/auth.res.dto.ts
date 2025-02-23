@@ -1,6 +1,6 @@
 export interface ILoginRes {
-  access_token: string;
-  refresh_token: string;
+  email: string;
+  accessToken: string;
 }
 
 export interface ISignUpRes {

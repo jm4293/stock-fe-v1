@@ -1,8 +1,13 @@
 import { useSetAtom } from 'jotai';
-import { modalStore } from '@/store';
+import { useAtomValue } from 'jotai/index';
+import { jwtStore } from '@/store/jwt';
+import { modalStore } from '@/store/modal';
 
 export const Home = () => {
   const openModal = useSetAtom(modalStore.openModal);
+  const getJwtToken = useAtomValue(jwtStore.getJwt);
+
+  console.log('getJwtToken', getJwtToken);
 
   return (
     <>
