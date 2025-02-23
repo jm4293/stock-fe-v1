@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export const useDeviceLayout = () => {
   const [width, setWidth] = useState<number>(window.innerWidth);
@@ -10,14 +10,12 @@ export const useDeviceLayout = () => {
       setHeight(window.innerHeight);
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  // return { width, height };
 
   return { isMobile: width < 768 };
 };
