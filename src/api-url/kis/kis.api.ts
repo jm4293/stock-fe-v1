@@ -4,11 +4,11 @@ class KisApi extends AxiosConfig {
   private readonly _baseURL = '/kis';
 
   async getOauthToken() {
-    return await this.get({ url: `${this._baseURL}/oauth/token` });
+    return await this.get({ url: `${this._baseURL}/oauth-token` });
   }
 
   async deleteOauthRevoke() {
-    return await this.delete({ url: `${this._baseURL}/oauth/revoke` });
+    return await this.delete({ url: `${this._baseURL}/oauth-revoke` });
   }
 }
 
