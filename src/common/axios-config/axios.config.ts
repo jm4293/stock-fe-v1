@@ -63,7 +63,29 @@ export class AxiosConfig {
       (response) => {
         return response;
       },
-      (error) => {
+      async (error) => {
+        const originalRequest = error.config;
+        const store = getDefaultStore();
+
+        if (error.response?.status === 401) {
+          try {
+            const refreshResponse = await axios.post(
+              `${import.meta.env.VITE_API_URL}:${import.meta.env.VITE_API_PORT}/${import.meta.env.VITE_API_PREFIX}/auth/refresh-token`,
+              {},
+              { withCredentials: true },
+            );
+
+            const newAccessToken = refreshResponse.data.data.accessToken;
+
+            store.set(jwtStore.getJwt, newAccessToken);
+
+            originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+            return this._axiosInstance(originalRequest);
+          } catch (refreshError) {
+            console.error('Refresh token 요청 실패:', refreshError);
+          }
+        }
+
         return Promise.reject(error);
       },
     );
