@@ -4,7 +4,6 @@ import kakao from '../../../asset/images/sign-in-kakao.png';
 import naver from '../../../asset/images/sign-in-naver.png';
 import google from '../../../asset/images/sign-in-google.png';
 import { useLocation, useNavigate } from 'react-router-dom';
-import useAuthMutation from '../../../hooks/auth/mutaion/useAuthMutation';
 import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 import { Input } from '@/components/input';
 import { Button } from '@/components/button';
@@ -12,6 +11,7 @@ import { Image } from 'components/image';
 import { Text } from '@/components/text';
 import { AuthLayout } from '@/pages/auth';
 import { Margin } from '@/components/margin';
+import { useAuthMutation } from '@/hooks/auth';
 
 export const Login = () => {
   const navigate = useNavigate();

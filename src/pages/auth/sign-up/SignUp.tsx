@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { ISignUpReq } from '@/types/interface/auth/req';
 import { Button } from '@/components/button';
 import { Text } from '@/components/text';
-import useAuthMutation from '@/hooks/auth/mutaion/useAuthMutation';
+import { useAuthMutation } from '@/hooks/auth';
 
 export const SignUp = () => {
   const [formData, setFormData] = useState<ISignUpReq>({

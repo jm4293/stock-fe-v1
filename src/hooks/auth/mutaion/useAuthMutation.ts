@@ -5,7 +5,7 @@ import { ICheckDuplicateEmailReq, ILoginReq, ISignUpReq } from '@/types/interfac
 import { useSetAtom } from 'jotai';
 import { jwtStore } from '@/store/jwt';
 
-export default function useAuthMutation() {
+export const useAuthMutation = () => {
   const navigate = useNavigate();
 
   const setJwtToken = useSetAtom(jwtStore.setJwt);
@@ -45,4 +45,4 @@ export default function useAuthMutation() {
     onSignUpMutation,
     onCheckEmailMutation,
   };
-}
+};
