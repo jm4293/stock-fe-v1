@@ -12,6 +12,6 @@ export interface ISignUpReq {
   password: string;
 }
 
-export interface ICheckDuplicateEmailReq {
+export interface ICheckEmailReq {
   email: string;
 }

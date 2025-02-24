@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import AuthApi from '../../../api-url/auth/auth.api';
-import { ICheckDuplicateEmailReq, ILoginReq, ISignUpReq } from '@/types/interface/auth/req';
+import { ICheckEmailReq, ILoginReq, ISignUpReq } from '@/types/interface/auth/req';
 import { useSetAtom } from 'jotai';
 import { jwtStore } from '@/store/jwt';
 
@@ -37,7 +37,7 @@ export const useAuthMutation = () => {
   });
 
   const onCheckEmailMutation = useMutation({
-    mutationFn: (dto: ICheckDuplicateEmailReq) => AuthApi.postCheckEmail(dto),
+    mutationFn: (dto: ICheckEmailReq) => AuthApi.postCheckEmail(dto),
   });
 
   return {

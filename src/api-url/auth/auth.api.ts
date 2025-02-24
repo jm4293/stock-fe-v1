@@ -1,6 +1,6 @@
 import { AxiosConfig } from '@/common/axios-config';
-import { ICheckDuplicateEmailReq, ILoginReq, ISignUpReq } from '@/types/interface/auth/req';
-import { ICheckDuplicateEmailRes, ILoginRes, ISignUpRes } from '@/types/interface/auth/res';
+import { ICheckEmailReq, ILoginReq, ISignUpReq } from '@/types/interface/auth/req';
+import { ICheckEmailRes, ILoginRes, ISignUpRes } from '@/types/interface/auth/res';
 
 class AuthApi extends AxiosConfig {
   private readonly _baseURL = '/auth';
@@ -19,8 +19,8 @@ class AuthApi extends AxiosConfig {
     });
   }
 
-  async postCheckEmail(dto: ICheckDuplicateEmailReq) {
-    return await this.post<ICheckDuplicateEmailRes, ICheckDuplicateEmailReq>({
+  async postCheckEmail(dto: ICheckEmailReq) {
+    return await this.post<ICheckEmailRes, ICheckEmailReq>({
       url: `${this._baseURL}/check-email`,
       data: dto,
     });

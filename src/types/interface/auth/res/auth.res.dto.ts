@@ -7,7 +7,7 @@ export interface ISignUpRes {
   email: string;
 }
 
-export interface ICheckDuplicateEmailRes {
+export interface ICheckEmailRes {
   isExist: boolean;
   email: string;
 }
