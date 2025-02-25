@@ -3,7 +3,7 @@ import { Login } from '@/pages/auth';
 import { Layout } from '@/common/layout';
 import { Home } from '@/pages/home';
 import { Stock } from 'pages/stock';
-import { Board } from '@/pages/board';
+import { Board, BoardDetail } from '@/pages/board';
 import { MyPage } from '@/pages/my-page';
 import { SignUp } from '@/pages/auth/sign-up';
 
@@ -21,6 +21,8 @@ export const Router = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/stock" element={<Stock />} />
           <Route path="/board" element={<Board />} />
+          <Route path="/board/detail" element={<BoardDetail />} />
+          <Route path="/board/detail/:id" element={<BoardDetail />} />
           <Route path="/mypage" element={<MyPage />} />
         </Route>
       </Routes>
