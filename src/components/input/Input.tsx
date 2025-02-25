@@ -50,7 +50,7 @@ export const Input = (props: IProps) => {
       type={type}
       value={value}
       onChange={onChange}
-      placeholder={`${optional ? '[선택]' : ''} ${placeholder}`}
+      placeholder={`${optional ? '[선택] ' : ''}${placeholder}`}
       disabled={disabled}
     />
   );

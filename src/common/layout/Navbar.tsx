@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { NavbarBoard, NavbarHome, NavbarStock, NavbarMyPage } from '../../asset/svg';
 import { memo, useCallback, useState } from 'react';
-import { useDeviceLayout } from '../../hooks/useDeviceLayout';
+import { NavbarBoard, NavbarHome, NavbarMyPage, NavbarStock } from '@/asset/svg';
 
 const Navbar = () => {
   const navigate = useNavigate();
