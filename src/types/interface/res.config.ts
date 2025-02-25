@@ -1,4 +1,4 @@
-import { ResCodeEnum } from '@/types/enum/res-code.enum';
+import { ResCodeEnum } from '@/types/enum';
 
 export interface ResConfig<T> {
   result: ResCodeEnum;

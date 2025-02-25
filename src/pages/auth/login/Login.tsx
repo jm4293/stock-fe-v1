@@ -4,7 +4,6 @@ import kakao from '../../../asset/images/sign-in-kakao.png';
 import naver from '../../../asset/images/sign-in-naver.png';
 import google from '../../../asset/images/sign-in-google.png';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 import { Input } from '@/components/input';
 import { Button } from '@/components/button';
 import { Image } from 'components/image';
@@ -12,12 +11,11 @@ import { Text } from '@/components/text';
 import { AuthLayout } from '@/pages/auth';
 import { Margin } from '@/components/margin';
 import { useAuthMutation } from '@/hooks/auth';
+import { ImageTypeEnum } from '@/types/enum';
 
 export const Login = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-
-  const { isMobile } = useDeviceLayout();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,7 +57,7 @@ export const Login = () => {
 
   return (
     <AuthLayout>
-      <Image src={logo} alt="sign-in-logo" width={383} />
+      <Image src={logo} type={ImageTypeEnum.LARGE_LOGO} alt="sign-in-logo" />
 
       <Margin direction="bottom" size={14} />
 
@@ -76,10 +74,10 @@ export const Login = () => {
 
       <Margin direction="bottom" size={14} />
 
-      <div className={`${isMobile ? 'gap-8' : 'gap-10'} w-full flex justify-center`}>
-        <Image src={kakao} alt="kakao" width={isMobile ? 48 : 60} />
-        <Image src={naver} alt="naver" width={isMobile ? 48 : 60} />
-        <Image src={google} alt="google" width={isMobile ? 48 : 60} />
+      <div className="w-full flex justify-center">
+        <Image src={kakao} type={ImageTypeEnum.SMALL} alt="kakao" />
+        <Image src={naver} type={ImageTypeEnum.SMALL} alt="naver" />
+        <Image src={google} type={ImageTypeEnum.SMALL} alt="google" />
       </div>
 
       <Margin direction="bottom" size={14} />

@@ -1,20 +1,19 @@
-import { ISvgNavbarProps } from "./interface";
-import { useDeviceLayout } from "../../../hooks/useDeviceLayout";
+import { ISvgNavbarProps } from './interface';
+import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 
 export const NavbarBoard = ({ color, onClick }: ISvgNavbarProps) => {
   const { isMobile } = useDeviceLayout();
 
   return (
     <svg
-      width={isMobile ? "60" : "90"}
-      height={isMobile ? "52" : "68"}
+      width={isMobile ? '60' : '90'}
+      height={isMobile ? '52' : '68'}
       viewBox="0 0 53 68"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       id="board"
       className="cursor-pointer"
-      onClick={onClick}
-    >
+      onClick={onClick}>
       <path
         d="M26.5 3.99967C26.5 2.52691 27.6939 1.33301 29.1667 1.33301H38.5C39.9728 1.33301 41.1667 2.52691 41.1667 3.99967V11.9997C41.1667 13.4725 39.9728 14.6663 38.5 14.6663H29.1667C27.6939 14.6663 26.5 13.4725 26.5 11.9997V3.99967ZM29.8333 5.33301C29.4652 5.33301 29.1667 5.63149 29.1667 5.99967C29.1667 6.36786 29.4652 6.66634 29.8333 6.66634H37.8333C38.2015 6.66634 38.5 6.36786 38.5 5.99967C38.5 5.63149 38.2015 5.33301 37.8333 5.33301H29.8333ZM29.8333 9.33301C29.4652 9.33301 29.1667 9.63149 29.1667 9.99967C29.1667 10.3679 29.4652 10.6663 29.8333 10.6663H37.8333C38.2015 10.6663 38.5 10.3679 38.5 9.99967C38.5 9.63149 38.2015 9.33301 37.8333 9.33301H29.8333Z"
         fill={color}
