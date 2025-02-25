@@ -74,7 +74,7 @@ export const Login = () => {
 
       <Margin direction="bottom" size={14} />
 
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center gap-10">
         <Image src={kakao} type={ImageTypeEnum.SMALL} alt="kakao" />
         <Image src={naver} type={ImageTypeEnum.SMALL} alt="naver" />
         <Image src={google} type={ImageTypeEnum.SMALL} alt="google" />

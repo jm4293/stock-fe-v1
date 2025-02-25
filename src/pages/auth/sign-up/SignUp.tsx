@@ -8,6 +8,7 @@ import { ISignUpReq } from '@/types/interface/auth/req';
 import { Button } from '@/components/button';
 import { Text } from '@/components/text';
 import { useAuthMutation } from '@/hooks/auth';
+import { ImageTypeEnum } from '@/types/enum';
 
 export const SignUp = () => {
   const [formData, setFormData] = useState<ISignUpReq>({
@@ -84,7 +85,7 @@ export const SignUp = () => {
 
   return (
     <AuthLayout>
-      <Image src={logo} alt="sign-in-logo" width={383} />
+      <Image src={logo} alt="sign-in-logo" type={ImageTypeEnum.LARGE_LOGO} />
 
       <Margin direction="bottom" size={14} />
 
