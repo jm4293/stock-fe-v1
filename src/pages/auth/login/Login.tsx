@@ -73,18 +73,9 @@ export const Login = () => {
         case 'google':
           const { hash } = location;
 
-          const ret = hash.split('&').reduce(
-            (acc, cur) => {
-              const [key, value] = cur.split('=');
-
-              if (key === '#access_token') {
-                return { ...acc, access_token: value };
-              }
-
-              return acc;
-            },
-            { access_token: '' },
-          );
+          const params = new URLSearchParams(hash.replace('#', ''));
+          const accessToken = params.get('access_token') || '';
+          const ret = { access_token: accessToken };
 
           onLoginOauthMutation.mutate({ ...ret, userAccountType: UserAccountTypeEnum.GOOGLE });
 
