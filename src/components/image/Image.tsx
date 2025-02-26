@@ -5,10 +5,11 @@ interface IProps {
   src: string;
   type: ImageTypeEnum;
   alt: string;
+  onClick?: (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => void;
 }
 
 export const Image = (props: IProps) => {
-  const { src, type, alt } = props;
+  const { src, type, alt, onClick } = props;
 
   const { isMobile } = useDeviceLayout();
 
@@ -29,5 +30,13 @@ export const Image = (props: IProps) => {
     }
   };
 
-  return <img src={src} alt={alt} width={image_type()} height={image_type()} />;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width={image_type()}
+      height={image_type()}
+      onClick={(event) => onClick && onClick(event)}
+    />
+  );
 };
