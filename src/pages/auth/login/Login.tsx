@@ -23,12 +23,12 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { onLoginInMutation } = useAuthMutation();
+  const { onLoginEmailMutation, onLoginOauthMutation } = useAuthMutation();
 
   const onLoginHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
 
-    onLoginInMutation.mutate({ email, password });
+    onLoginEmailMutation.mutate({ email, password });
   };
 
   const onClickHandler = (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
@@ -60,7 +60,7 @@ export const Login = () => {
       case 'naver':
         break;
       case 'google':
-        window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${import.meta.env.VITE_GOOGLE_OAUTH_CLIEND_ID}&redirect_uri=${import.meta.env.VITE_GOOGLE_OAUTH_REDIRECT_URL}&response_type=token&scope=openid email profile`;
+        window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${import.meta.env.VITE_GOOGLE_OAUTH_CLIEND_ID}&redirect_uri=${import.meta.env.VITE_GOOGLE_OAUTH_REDIRECT_URL}&response_type=token&scope=openid email profile&include_granted_scopes=true`;
         break;
       default:
         break;
@@ -72,13 +72,21 @@ export const Login = () => {
       switch (provider) {
         case 'google':
           const { hash } = location;
-          const access_token = hash.split('=')[1].split('&')[0];
 
-          axios
-            .post('http://localhost:42973/api/auth/login-oauth', { access_token, type: UserAccountTypeEnum.GOOGLE })
-            .then((res) => {
-              console.log(res);
-            });
+          const ret = hash.split('&').reduce(
+            (acc, cur) => {
+              const [key, value] = cur.split('=');
+
+              if (key === '#access_token') {
+                return { ...acc, access_token: value };
+              }
+
+              return acc;
+            },
+            { access_token: '' },
+          );
+
+          onLoginOauthMutation.mutate({ ...ret, userAccountType: UserAccountTypeEnum.GOOGLE });
 
           break;
         case 'naver':
@@ -120,8 +128,8 @@ export const Login = () => {
       <Margin direction="bottom" size={14} />
 
       <div className="w-full flex justify-center gap-10">
-        <Image src={kakao} type={ImageTypeEnum.SMALL} alt="kakao" onClick={(event) => oauthSignIn(event)} />
-        <Image src={naver} type={ImageTypeEnum.SMALL} alt="naver" onClick={(event) => oauthSignIn(event)} />
+        {/*<Image src={kakao} type={ImageTypeEnum.SMALL} alt="kakao" onClick={(event) => oauthSignIn(event)} />*/}
+        {/*<Image src={naver} type={ImageTypeEnum.SMALL} alt="naver" onClick={(event) => oauthSignIn(event)} />*/}
         <Image src={google} type={ImageTypeEnum.SMALL} alt="google" onClick={(event) => oauthSignIn(event)} />
       </div>
 

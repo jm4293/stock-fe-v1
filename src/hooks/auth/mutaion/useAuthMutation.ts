@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import AuthApi from '../../../api-url/auth/auth.api';
-import { ICheckEmailReq, ILoginReq, ISignUpReq } from '@/types/interface/auth/req';
+import { ICheckEmailReq, ILoginEmailReq, ILoginOauthReq, ISignUpReq } from '@/types/interface/auth/req';
 import { useSetAtom } from 'jotai';
 import { jwtStore } from '@/store/jwt';
 
@@ -22,8 +22,22 @@ export const useAuthMutation = () => {
     },
   });
 
-  const onLoginInMutation = useMutation({
-    mutationFn: (dto: ILoginReq) => AuthApi.postSignIn(dto),
+  const onLoginEmailMutation = useMutation({
+    mutationFn: (dto: ILoginEmailReq) => AuthApi.postSignInEmail(dto),
+    onSuccess: (res) => {
+      const { accessToken } = res.data.data;
+
+      setJwtToken(accessToken);
+
+      navigate('/home');
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+
+  const onLoginOauthMutation = useMutation({
+    mutationFn: (dto: ILoginOauthReq) => AuthApi.postSignInOauth(dto),
     onSuccess: (res) => {
       const { accessToken } = res.data.data;
 
@@ -41,7 +55,8 @@ export const useAuthMutation = () => {
   });
 
   return {
-    onLoginInMutation,
+    onLoginEmailMutation,
+    onLoginOauthMutation,
     onSignUpMutation,
     onCheckEmailMutation,
   };

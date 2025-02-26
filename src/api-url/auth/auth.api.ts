@@ -1,5 +1,5 @@
 import { AxiosConfig } from '@/common/axios-config';
-import { ICheckEmailReq, ILoginReq, ISignUpReq } from '@/types/interface/auth/req';
+import { ICheckEmailReq, ILoginEmailReq, ILoginOauthReq, ISignUpReq } from '@/types/interface/auth/req';
 import { ICheckEmailRes, ILoginRes, ISignUpRes } from '@/types/interface/auth/res';
 
 class AuthApi extends AxiosConfig {
@@ -12,9 +12,16 @@ class AuthApi extends AxiosConfig {
     });
   }
 
-  async postSignIn(dto: ILoginReq) {
-    return await this.post<ILoginRes, ILoginReq>({
+  async postSignInEmail(dto: ILoginEmailReq) {
+    return await this.post<ILoginRes, ILoginEmailReq>({
       url: `${this._baseURL}/login-email`,
+      data: dto,
+    });
+  }
+
+  async postSignInOauth(dto: ILoginOauthReq) {
+    return await this.post<ILoginRes, ILoginOauthReq>({
+      url: `${this._baseURL}/login-oauth`,
       data: dto,
     });
   }
