@@ -32,6 +32,7 @@ export const Image = (props: IProps) => {
 
   return (
     <img
+      className={`${onClick ? 'cursor-pointer' : ''}`}
       src={src}
       alt={alt}
       width={image_type()}
