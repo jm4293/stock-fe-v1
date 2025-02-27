@@ -25,6 +25,8 @@ export const Image = (props: IProps) => {
         return isMobile ? 80 : 100;
       case ImageTypeEnum.SMALL:
         return isMobile ? 60 : 80;
+      case ImageTypeEnum.THUMBNAIL:
+        return isMobile ? 20 : 40;
       default:
         return isMobile ? 80 : 100;
     }
@@ -32,7 +34,7 @@ export const Image = (props: IProps) => {
 
   return (
     <img
-      className={`${onClick ? 'cursor-pointer' : ''}`}
+      className={`${onClick ? 'cursor-pointer' : ''} ${type === ImageTypeEnum.THUMBNAIL ? 'rounded-3xl' : ''}`}
       src={src}
       alt={alt}
       width={image_type()}
