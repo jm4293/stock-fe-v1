@@ -21,7 +21,7 @@ export const Input = (props: IProps) => {
     onChange,
     className,
     name,
-    placeholder,
+    placeholder = '',
     disabled,
     borderColor,
     optional = false,
