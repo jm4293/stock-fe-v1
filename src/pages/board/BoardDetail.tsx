@@ -39,7 +39,7 @@ export const BoardDetail = () => {
   }, [boardDetailQuery.isSuccess]);
 
   return myInfoQuery.isSuccess ? (
-    <div className="px-10 py-2 flex flex-col gap-10">
+    <div className="px-6 py-2 flex flex-col gap-4">
       <div className="grid grid-cols-6 gap-4">
         <div className="flex flex-col justify-center items-center gap-2">
           <Image type={ImageTypeEnum.THUMBNAIL} src={myInfoQuery.data.thumbnail} alt="board-detail-thumbnail" />

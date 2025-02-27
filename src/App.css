@@ -93,7 +93,7 @@ button {
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 20;
-  padding: 20px 0;
+  padding-bottom: 20px;
 }
 
 .layout > .navbar {
