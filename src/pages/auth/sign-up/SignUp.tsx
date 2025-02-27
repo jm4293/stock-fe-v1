@@ -4,7 +4,7 @@ import logo from '@/asset/images/sign-in-logo.png';
 import { Margin } from '@/components/margin';
 import { Input } from '@/components/input';
 import { useState } from 'react';
-import { ISignUpReq } from '@/types/interface/auth/req';
+import { ISignUpReq } from '@/types/req';
 import { Button } from '@/components/button';
 import { Text } from '@/components/text';
 import { useAuthMutation } from '@/hooks/auth';
