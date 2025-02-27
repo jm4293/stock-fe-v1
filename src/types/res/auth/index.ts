@@ -1,1 +1,1 @@
-export * from './auth.res.dto';
+export * from './auth.res';

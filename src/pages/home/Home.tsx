@@ -8,7 +8,7 @@ export const Home = () => {
   const openModal = useSetAtom(modalStore.openModal);
   const getJwtToken = useAtomValue(jwtStore.getJwt);
 
-  // const kisOauthTokenQuery = useKisOauthTokenQuery();
+  const kisOauthTokenQuery = useKisOauthTokenQuery();
 
   console.log('getJwtToken', getJwtToken);
 

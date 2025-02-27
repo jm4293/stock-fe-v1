@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import AuthApi from '../../../api-url/auth/auth.api';
-import { ICheckEmailReq, ILoginEmailReq, ILoginOauthReq, ISignUpReq } from '@/types/req';
+import { ICheckEmailReq, ILoginEmailReq, ILoginOauthReq, ISignUpReq } from 'types/dto';
 import { useSetAtom } from 'jotai';
 import { jwtStore } from '@/store/jwt';
 
