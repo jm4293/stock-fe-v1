@@ -26,7 +26,7 @@ export const Image = (props: IProps) => {
       case ImageTypeEnum.SMALL:
         return isMobile ? 60 : 80;
       case ImageTypeEnum.THUMBNAIL:
-        return isMobile ? 20 : 40;
+        return isMobile ? 40 : 50;
       default:
         return isMobile ? 80 : 100;
     }

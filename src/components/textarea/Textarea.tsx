@@ -40,20 +40,20 @@ export const Textarea = (props: IProps) => {
     }
   };
 
-  useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = '40vh'; // 기본 높이 설정
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // 내용에 따라 높이 조절
-    }
-  }, [value]);
-
   const handleInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto'; // 높이 초기화
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // 내용에 따라 높이 조절
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
     onChange(event);
   };
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '40vh';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [value]);
 
   return (
     <textarea
