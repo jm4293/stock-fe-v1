@@ -1,7 +1,11 @@
-import { ISvgBoardButtonProps } from '@/asset/svg/button/interface';
 import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 
-export const BoardButton = ({ color, onClick }: ISvgBoardButtonProps) => {
+export interface IProps {
+  color: '#9470DC' | '#989898';
+  onClick: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
+}
+
+export const BoardButton = ({ color, onClick }: IProps) => {
   const { isMobile } = useDeviceLayout();
 
   return (

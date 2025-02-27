@@ -11,8 +11,9 @@ import { Text } from '@/components/text';
 import { AuthLayout } from '@/pages/auth';
 import { Margin } from '@/components/margin';
 import { useAuthMutation } from '@/hooks/auth';
-import { ImageTypeEnum, UserAccountTypeEnum } from '@/types/enum';
+import { ImageTypeEnum, UserAccountTypeEnum } from 'constant/enum';
 import axios from 'axios';
+import { OAuthGoogleButton } from '@/asset/svg/button';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -51,10 +52,10 @@ export const Login = () => {
     }
   };
 
-  const oauthSignIn = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-    const { alt } = event.currentTarget;
+  const oauthSignIn = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    const { id } = event.currentTarget;
 
-    switch (alt) {
+    switch (id) {
       case 'kakao':
         break;
       case 'naver':
@@ -99,38 +100,40 @@ export const Login = () => {
     }
   }, [state]);
 
-  return (
-    <AuthLayout>
-      <Image src={logo} type={ImageTypeEnum.LARGE_LOGO} alt="sign-in-logo" />
+  // return (
+  //   <AuthLayout>
+  //     <Image src={logo} type={ImageTypeEnum.LARGE_LOGO} alt="sign-in-logo" />
+  //
+  //     <Margin direction="bottom" size={14} />
+  //
+  //     <div className="w-full flex flex-col gap-4">
+  //       <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="이메일 주소" />
+  //       <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호" />
+  //     </div>
+  //
+  //     <Margin direction="bottom" size={14} />
+  //
+  //     <div className="w-full">
+  //       <Button text="입장하기" onClick={(event) => onLoginHandler(event)} color="green" />
+  //     </div>
+  //
+  //     <Margin direction="bottom" size={14} />
+  //
+  //     <div className="w-full flex justify-center gap-10">
+  //       {/*<Image src={kakao} type={ImageTypeEnum.SMALL} alt="kakao" onClick={(event) => oauthSignIn(event)} />*/}
+  //       {/*<Image src={naver} type={ImageTypeEnum.SMALL} alt="naver" onClick={(event) => oauthSignIn(event)} />*/}
+  //       <OAuthGoogleButton onClick={oauthSignIn} id="google" />;
+  //     </div>
+  //
+  //     <Margin direction="bottom" size={14} />
+  //
+  //     <div className="w-full flex justify-center gap-10">
+  //       <Text value="아이디 찾기" color="gray" id="find-id" onClick={onClickHandler} />
+  //       <Text value="비밀번호 찾기" color="gray" id="find-password" onClick={onClickHandler} />
+  //       <Text value="회원가입" color="gray" id="sign-up" onClick={onClickHandler} />
+  //     </div>
+  //   </AuthLayout>
+  // );
 
-      <Margin direction="bottom" size={14} />
-
-      <div className="w-full flex flex-col gap-4">
-        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="이메일 주소" />
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호" />
-      </div>
-
-      <Margin direction="bottom" size={14} />
-
-      <div className="w-full">
-        <Button text="입장하기" onClick={(event) => onLoginHandler(event)} color="green" />
-      </div>
-
-      <Margin direction="bottom" size={14} />
-
-      <div className="w-full flex justify-center gap-10">
-        {/*<Image src={kakao} type={ImageTypeEnum.SMALL} alt="kakao" onClick={(event) => oauthSignIn(event)} />*/}
-        {/*<Image src={naver} type={ImageTypeEnum.SMALL} alt="naver" onClick={(event) => oauthSignIn(event)} />*/}
-        <Image src={google} type={ImageTypeEnum.SMALL} alt="google" onClick={(event) => oauthSignIn(event)} />
-      </div>
-
-      <Margin direction="bottom" size={14} />
-
-      <div className="w-full flex justify-center gap-10">
-        <Text value="아이디 찾기" color="gray" id="find-id" onClick={onClickHandler} />
-        <Text value="비밀번호 찾기" color="gray" id="find-password" onClick={onClickHandler} />
-        <Text value="회원가입" color="gray" id="sign-up" onClick={onClickHandler} />
-      </div>
-    </AuthLayout>
-  );
+  return <OAuthGoogleButton onClick={oauthSignIn} id="google" />;
 };
