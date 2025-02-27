@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import logo from '../../../asset/images/sign-in-logo.png';
-import kakao from '../../../asset/images/sign-in-kakao.png';
-import naver from '../../../asset/images/sign-in-naver.png';
-import google from '../../../asset/images/sign-in-google.png';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Input } from '@/components/input';
 import { Button } from '@/components/button';
@@ -12,7 +9,6 @@ import { AuthLayout } from '@/pages/auth';
 import { Margin } from '@/components/margin';
 import { useAuthMutation } from '@/hooks/auth';
 import { ImageTypeEnum, UserAccountTypeEnum } from 'constant/enum';
-import axios from 'axios';
 import { OAuthGoogleButton } from '@/asset/svg/button';
 
 export const Login = () => {
@@ -100,40 +96,38 @@ export const Login = () => {
     }
   }, [state]);
 
-  // return (
-  //   <AuthLayout>
-  //     <Image src={logo} type={ImageTypeEnum.LARGE_LOGO} alt="sign-in-logo" />
-  //
-  //     <Margin direction="bottom" size={14} />
-  //
-  //     <div className="w-full flex flex-col gap-4">
-  //       <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="이메일 주소" />
-  //       <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호" />
-  //     </div>
-  //
-  //     <Margin direction="bottom" size={14} />
-  //
-  //     <div className="w-full">
-  //       <Button text="입장하기" onClick={(event) => onLoginHandler(event)} color="green" />
-  //     </div>
-  //
-  //     <Margin direction="bottom" size={14} />
-  //
-  //     <div className="w-full flex justify-center gap-10">
-  //       {/*<Image src={kakao} type={ImageTypeEnum.SMALL} alt="kakao" onClick={(event) => oauthSignIn(event)} />*/}
-  //       {/*<Image src={naver} type={ImageTypeEnum.SMALL} alt="naver" onClick={(event) => oauthSignIn(event)} />*/}
-  //       <OAuthGoogleButton onClick={oauthSignIn} id="google" />;
-  //     </div>
-  //
-  //     <Margin direction="bottom" size={14} />
-  //
-  //     <div className="w-full flex justify-center gap-10">
-  //       <Text value="아이디 찾기" color="gray" id="find-id" onClick={onClickHandler} />
-  //       <Text value="비밀번호 찾기" color="gray" id="find-password" onClick={onClickHandler} />
-  //       <Text value="회원가입" color="gray" id="sign-up" onClick={onClickHandler} />
-  //     </div>
-  //   </AuthLayout>
-  // );
+  return (
+    <AuthLayout>
+      <Image src={logo} type={ImageTypeEnum.LARGE_LOGO} alt="sign-in-logo" />
 
-  return <OAuthGoogleButton onClick={oauthSignIn} id="google" />;
+      <Margin direction="bottom" size={14} />
+
+      <div className="w-full flex flex-col gap-4">
+        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="이메일 주소" />
+        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호" />
+      </div>
+
+      <Margin direction="bottom" size={14} />
+
+      <div className="w-full">
+        <Button text="입장하기" onClick={(event) => onLoginHandler(event)} color="green" />
+      </div>
+
+      <Margin direction="bottom" size={14} />
+
+      <div className="w-full flex justify-center gap-10">
+        {/*<Image src={kakao} type={ImageTypeEnum.SMALL} alt="kakao" onClick={(event) => oauthSignIn(event)} />*/}
+        {/*<Image src={naver} type={ImageTypeEnum.SMALL} alt="naver" onClick={(event) => oauthSignIn(event)} />*/}
+        <OAuthGoogleButton onClick={oauthSignIn} id="google" />
+      </div>
+
+      <Margin direction="bottom" size={14} />
+
+      <div className="w-full flex justify-center gap-10">
+        <Text value="아이디 찾기" color="gray" id="find-id" onClick={onClickHandler} />
+        <Text value="비밀번호 찾기" color="gray" id="find-password" onClick={onClickHandler} />
+        <Text value="회원가입" color="gray" id="sign-up" onClick={onClickHandler} />
+      </div>
+    </AuthLayout>
+  );
 };
