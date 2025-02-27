@@ -8,7 +8,7 @@ import { ISignUpReq } from '@/types/interface/auth/req';
 import { Button } from '@/components/button';
 import { Text } from '@/components/text';
 import { useAuthMutation } from '@/hooks/auth';
-import { ImageTypeEnum } from '@/types/enum';
+import { ImageTypeEnum } from 'constant/enum';
 
 export const SignUp = () => {
   const [formData, setFormData] = useState<ISignUpReq>({

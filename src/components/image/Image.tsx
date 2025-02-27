@@ -1,5 +1,5 @@
 import { useDeviceLayout } from '@/hooks/useDeviceLayout';
-import { ImageTypeEnum } from '@/types/enum';
+import { ImageTypeEnum } from 'constant/enum';
 
 interface IProps {
   src: string;

@@ -1,4 +1,4 @@
-import { UserAccountTypeEnum } from '@/types/enum';
+import { UserAccountTypeEnum } from 'constant/enum';
 
 export interface ILoginEmailReq {
   email: string;
