@@ -8,6 +8,9 @@ export const useBoardListQuery = () => {
     getNextPageParam: (lastPage: any) => {
       return lastPage.data.data.nextPage;
     },
+    select: (data) => {
+      return data.pages;
+    },
     initialPageParam: 1,
   });
 };

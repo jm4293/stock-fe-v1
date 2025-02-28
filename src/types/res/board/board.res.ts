@@ -7,6 +7,7 @@ interface IBoard {
   createdAt: Date;
   updatedAt: Date;
   user: IUser;
+  viewCount: number;
 }
 
 export interface IBoardListRes {
