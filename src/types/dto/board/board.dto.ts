@@ -1,7 +1,7 @@
 import { IBoard } from '@/types/interface';
 
-export interface ICreateBoard extends IBoard {}
+export interface ICreateBoardDto extends IBoard {}
 
-export interface IUpdateBoard extends IBoard {
+export interface IUpdateBoardDto extends IBoard {
   boardSeq: number;
 }

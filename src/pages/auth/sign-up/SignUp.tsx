@@ -4,14 +4,14 @@ import logo from '@/asset/images/sign-in-logo.png';
 import { Margin } from '@/components/margin';
 import { Input } from '@/components/input';
 import { useState } from 'react';
-import { ISignUpReq } from 'types/dto';
 import { Button } from '@/components/button';
 import { Text } from '@/components/text';
 import { useAuthMutation } from '@/hooks/auth';
 import { ImageTypeEnum } from 'constant/enum';
+import { ISignUpDto } from '@/types/dto';
 
 export const SignUp = () => {
-  const [formData, setFormData] = useState<ISignUpReq>({
+  const [formData, setFormData] = useState<ISignUpDto>({
     nickname: '',
     name: '',
     policy: true,

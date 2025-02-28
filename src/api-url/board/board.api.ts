@@ -1,6 +1,6 @@
 import { AxiosConfig } from '@/common/axios-config';
-import { ICreateBoard, IUpdateBoard } from '@/types/dto';
 import { IBoardDetailRes, IBoardListRes } from '@/types/res/board';
+import { ICreateBoardDto, IUpdateBoardDto } from '@/types/dto';
 
 class BoardApi extends AxiosConfig {
   private readonly _baseURL = '/board';
@@ -13,14 +13,14 @@ class BoardApi extends AxiosConfig {
     return await this.get<IBoardDetailRes, null>({ url: `${this._baseURL}/${boardSeq}` });
   }
 
-  async createBoard(dto: ICreateBoard) {
-    return await this.post<null, ICreateBoard>({ url: `${this._baseURL}`, data: dto });
+  async createBoard(dto: ICreateBoardDto) {
+    return await this.post<null, ICreateBoardDto>({ url: `${this._baseURL}`, data: dto });
   }
 
-  async updateBoard(dto: IUpdateBoard) {
+  async updateBoard(dto: IUpdateBoardDto) {
     const { boardSeq, ...res } = dto;
 
-    return await this.put<null, Omit<IUpdateBoard, 'boardSeq'>>({ url: `${this._baseURL}/${boardSeq}`, data: res });
+    return await this.put<null, Omit<IUpdateBoardDto, 'boardSeq'>>({ url: `${this._baseURL}/${boardSeq}`, data: res });
   }
 }
 

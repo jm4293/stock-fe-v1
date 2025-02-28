@@ -1,5 +1,4 @@
 import { useDeviceLayout } from '@/hooks/useDeviceLayout';
-import { devNull } from 'node:os';
 
 interface IProps {
   text: string;

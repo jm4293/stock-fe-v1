@@ -1,33 +1,33 @@
 import { AxiosConfig } from '@/common/axios-config';
-import { ICheckEmailReq, ILoginEmailReq, ILoginOauthReq, ISignUpReq } from 'types/dto';
 import { ICheckEmailRes, ILoginRes, ISignUpRes } from '@/types/res';
+import { ICheckEmailDto, ILoginEmailDto, ILoginOauthDto, ISignUpDto } from '@/types/dto';
 
 class AuthApi extends AxiosConfig {
   private readonly _baseURL = '/auth';
 
-  async postSignUp(dto: ISignUpReq) {
-    return await this.post<ISignUpRes, ISignUpReq>({
+  async postSignUp(dto: ISignUpDto) {
+    return await this.post<ISignUpRes, ISignUpDto>({
       url: `${this._baseURL}/register-email`,
       data: dto,
     });
   }
 
-  async postSignInEmail(dto: ILoginEmailReq) {
-    return await this.post<ILoginRes, ILoginEmailReq>({
+  async postSignInEmail(dto: ILoginEmailDto) {
+    return await this.post<ILoginRes, ILoginEmailDto>({
       url: `${this._baseURL}/login-email`,
       data: dto,
     });
   }
 
-  async postSignInOauth(dto: ILoginOauthReq) {
-    return await this.post<ILoginRes, ILoginOauthReq>({
+  async postSignInOauth(dto: ILoginOauthDto) {
+    return await this.post<ILoginRes, ILoginOauthDto>({
       url: `${this._baseURL}/login-oauth`,
       data: dto,
     });
   }
 
-  async postCheckEmail(dto: ICheckEmailReq) {
-    return await this.post<ICheckEmailRes, ICheckEmailReq>({
+  async postCheckEmail(dto: ICheckEmailDto) {
+    return await this.post<ICheckEmailRes, ICheckEmailDto>({
       url: `${this._baseURL}/check-email`,
       data: dto,
     });

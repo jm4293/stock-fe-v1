@@ -1,16 +1,16 @@
 import { UserAccountTypeEnum } from '@/constant/enum';
 
-export interface ILoginEmailReq {
+export interface ILoginEmailDto {
   email: string;
   password: string;
 }
 
-export interface ILoginOauthReq {
+export interface ILoginOauthDto {
   userAccountType: UserAccountTypeEnum;
   access_token: string;
 }
 
-export interface ISignUpReq {
+export interface ISignUpDto {
   nickname: string;
   name: string;
   policy: boolean;
@@ -19,6 +19,6 @@ export interface ISignUpReq {
   password: string;
 }
 
-export interface ICheckEmailReq {
+export interface ICheckEmailDto {
   email: string;
 }
