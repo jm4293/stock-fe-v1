@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { ResConfig } from '@/types/res.config';
 import { getDefaultStore } from 'jotai';
 import { jwtStore } from '@/store/jwt';
+import AuthApi from '@/api-url/auth/auth.api';
 
 interface IGetReq<D> {
   url: string;
@@ -76,11 +77,7 @@ export class AxiosConfig {
           alert(message);
         } else if (error.response?.status === 401) {
           try {
-            const refreshResponse = await axios.post(
-              `${import.meta.env.VITE_API_URL}:${import.meta.env.VITE_API_PORT}/${import.meta.env.VITE_API_PREFIX}/auth/refresh-token`,
-              {},
-              { withCredentials: true },
-            );
+            const refreshResponse = await AuthApi.postRefreshToken();
 
             const newAccessToken = refreshResponse.data.data.accessToken;
 

@@ -11,3 +11,7 @@ export interface ICheckEmailRes {
   isExist: boolean;
   email: string;
 }
+
+export interface IRefreshTokenRes {
+  accessToken: string;
+}

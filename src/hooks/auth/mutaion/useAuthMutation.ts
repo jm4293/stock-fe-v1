@@ -54,10 +54,35 @@ export const useAuthMutation = () => {
     mutationFn: (dto: ICheckEmailDto) => AuthApi.postCheckEmail(dto),
   });
 
+  const onLogoutMutation = useMutation({
+    mutationFn: () => AuthApi.postLogout(),
+    onSuccess: () => {
+      setJwtToken('');
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+
+  const onRefreshTokenMutation = useMutation({
+    mutationFn: () => AuthApi.postRefreshToken(),
+    onSuccess: (res) => {
+      const { accessToken } = res.data.data;
+
+      setJwtToken(accessToken);
+    },
+    onError: (err) => {
+      // alert('로그인이 필요합니다.');
+      // navigate('/auth/login', { replace: true });
+    },
+  });
+
   return {
     onLoginEmailMutation,
     onLoginOauthMutation,
     onSignUpMutation,
     onCheckEmailMutation,
+    onLogoutMutation,
+    onRefreshTokenMutation,
   };
 };
