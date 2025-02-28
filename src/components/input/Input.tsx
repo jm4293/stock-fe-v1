@@ -4,13 +4,13 @@ interface IProps {
   type: 'text' | 'email' | 'password' | 'date' | 'datetime-local';
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  className?: string;
   name?: string;
   placeholder?: string;
   disabled?: boolean;
   borderColor?: 'gray' | 'green';
   optional?: boolean;
   ref?: React.RefObject<HTMLInputElement>;
+  className?: string;
   children?: React.ReactNode;
 }
 
@@ -19,13 +19,13 @@ export const Input = (props: IProps) => {
     type,
     value,
     onChange,
-    className,
     name,
     placeholder = '',
     disabled,
     borderColor,
     optional = false,
     ref,
+    className,
     children,
   } = props;
 

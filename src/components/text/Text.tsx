@@ -4,10 +4,11 @@ interface IProps {
   id?: string;
   size?: 'small' | 'middle' | 'large';
   onClick?: (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => void;
+  className?: string;
 }
 
 export const Text = (props: IProps) => {
-  const { value, color, id, size = 'middle', onClick } = props;
+  const { value, color, id, size = 'middle', onClick, className } = props;
 
   const textColor = () => {
     switch (color) {
@@ -35,7 +36,7 @@ export const Text = (props: IProps) => {
 
   return (
     <p
-      className={`${textColor()} ${textSize()} ${onClick && 'cursor-pointer'} font-normal whitespace-nowrap`}
+      className={`${textColor()} ${textSize()} ${onClick && 'cursor-pointer'} ${className}`}
       id={id}
       onClick={(event) => onClick && onClick(event)}>
       {value}

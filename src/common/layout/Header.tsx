@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai/index';
 import { jwtStore } from '@/store/jwt';
 import { Button } from '@/components/button';
 import { useAuthMutation } from '@/hooks/auth';
+import { BackButton } from '@/asset/svg';
 
 export const Header = () => {
   const params = useParams();
@@ -33,6 +34,12 @@ export const Header = () => {
     }
   };
 
+  const onBackButtonClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    event.stopPropagation();
+
+    navigate(-1);
+  };
+
   const onButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
 
@@ -52,6 +59,8 @@ export const Header = () => {
 
   return (
     <div className="header">
+      <BackButton color="#989898" onClick={(event) => onBackButtonClick(event)} />
+
       <Text value={pathName()} color="gray" size="large" />
 
       <div>

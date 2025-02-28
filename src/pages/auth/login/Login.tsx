@@ -9,7 +9,7 @@ import { AuthLayout } from '@/pages/auth';
 import { Margin } from '@/components/margin';
 import { useAuthMutation } from '@/hooks/auth';
 import { ImageTypeEnum, UserAccountTypeEnum } from 'constant/enum';
-import { OAuthGoogleButton } from '@/asset/svg/button';
+import { OAuthGoogleButton } from '@/asset/svg';
 
 export const Login = () => {
   const navigate = useNavigate();

@@ -4,12 +4,12 @@ import { useEffect, useRef } from 'react';
 interface IProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  className?: string;
   name?: string;
   placeholder?: string;
   disabled?: boolean;
   borderColor?: 'gray' | 'green';
   optional?: boolean;
+  className?: string;
   children?: React.ReactNode;
 }
 
@@ -17,12 +17,12 @@ export const Textarea = (props: IProps) => {
   const {
     value,
     onChange,
-    className,
     name,
     placeholder = '',
     disabled,
     borderColor,
     optional = false,
+    className,
     children,
   } = props;
 
@@ -50,7 +50,7 @@ export const Textarea = (props: IProps) => {
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = '40vh';
+      textareaRef.current.style.height = '20vh';
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   }, [value]);

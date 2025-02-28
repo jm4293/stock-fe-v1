@@ -1,4 +1,4 @@
-export interface IProps {
+interface IProps {
   onClick: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
   id: string;
 }

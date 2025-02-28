@@ -1,11 +1,12 @@
 import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 
-export interface IProps {
+interface IProps {
   color: '#9470DC' | '#989898';
   onClick: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
-export const BoardButton = ({ color, onClick }: IProps) => {
+export const BoardButton = (props: IProps) => {
+  const { color, onClick } = props;
   const { isMobile } = useDeviceLayout();
 
   return (
