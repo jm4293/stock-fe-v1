@@ -13,7 +13,7 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to={`/auth/login`} />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/login/:provider" element={<Login />} />
         <Route path="/auth/sign-up" element={<SignUp />} />
