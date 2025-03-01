@@ -1,7 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import UserApi from '@/api-url/user/user.api';
 
-export const useMyInfoQuery = () => {
+interface IProps {
+  enabled?: boolean;
+}
+
+export const useMyInfoQuery = (props: IProps) => {
+  const { enabled } = props;
+
   return useQuery({
     queryKey: ['user-my-info'],
     queryFn: () => UserApi.getMyInfo(),
@@ -12,5 +18,6 @@ export const useMyInfoQuery = () => {
       return { email, name, nickname, birthdate, thumbnail };
     },
     staleTime: 1000 * 60 * 60 * 6, // 6시간,
+    enabled,
   });
 };

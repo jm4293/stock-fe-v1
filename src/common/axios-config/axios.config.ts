@@ -88,6 +88,8 @@ export class AxiosConfig {
           } catch (refreshError) {
             console.error('Refresh token 요청 실패:', refreshError);
           }
+        } else if (error.response?.status === 403) {
+          alert('로그인이 필요합니다.');
         }
 
         return Promise.reject(error);
