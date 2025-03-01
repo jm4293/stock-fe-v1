@@ -38,7 +38,8 @@ export const Text = (props: IProps) => {
     <p
       className={`${textColor()} ${textSize()} ${onClick && 'cursor-pointer'} ${className}`}
       id={id}
-      onClick={(event) => onClick && onClick(event)}>
+      onClick={(event) => onClick && onClick(event)}
+      style={{ wordBreak: 'break-word' }}>
       {value}
     </p>
   );

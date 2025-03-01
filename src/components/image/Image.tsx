@@ -34,7 +34,7 @@ export const Image = (props: IProps) => {
     }
   };
 
-  return (
+  return src ? (
     <img
       className={`${onClick ? 'cursor-pointer' : ''} ${type === ImageTypeEnum.THUMBNAIL ? 'rounded-3xl' : ''} ${className}`}
       src={src}
@@ -43,5 +43,7 @@ export const Image = (props: IProps) => {
       height={image_type()}
       onClick={(event) => onClick && onClick(event)}
     />
+  ) : (
+    <></>
   );
 };

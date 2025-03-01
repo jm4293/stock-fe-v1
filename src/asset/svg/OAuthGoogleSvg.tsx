@@ -3,7 +3,7 @@ interface IProps {
   id: string;
 }
 
-export const OAuthGoogleButton = (props: IProps) => {
+export const OAuthGoogleSvg = (props: IProps) => {
   const { onClick, id } = props;
 
   return (

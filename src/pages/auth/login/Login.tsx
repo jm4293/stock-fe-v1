@@ -9,7 +9,7 @@ import { AuthLayout } from '@/pages/auth';
 import { Margin } from '@/components/margin';
 import { useAuthMutation } from '@/hooks/auth';
 import { ImageTypeEnum, UserAccountTypeEnum } from 'constant/enum';
-import { OAuthGoogleButton } from '@/asset/svg';
+import { OAuthGoogleSvg } from '@/asset/svg';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -118,7 +118,7 @@ export const Login = () => {
       <div className="w-full flex justify-center gap-10">
         {/*<Image src={kakao} type={ImageTypeEnum.SMALL} alt="kakao" onClick={(event) => oauthSignIn(event)} />*/}
         {/*<Image src={naver} type={ImageTypeEnum.SMALL} alt="naver" onClick={(event) => oauthSignIn(event)} />*/}
-        <OAuthGoogleButton onClick={oauthSignIn} id="google" />
+        <OAuthGoogleSvg onClick={oauthSignIn} id="google" />
       </div>
 
       <Margin direction="bottom" size={14} />

@@ -1,14 +1,10 @@
 import { useDeviceLayout } from '@/hooks/useDeviceLayout';
+import { ISvgProps } from '@/asset/svg/interface';
 
-interface IProps {
-  color: '#9470DC' | '#989898';
-  onClick: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
-  className?: string;
-}
+interface IProps extends ISvgProps {}
 
-export const BackButton = (props: IProps) => {
+export const BackSvg = (props: IProps) => {
   const { color, onClick, className } = props;
-
   const { isMobile } = useDeviceLayout();
 
   return (
@@ -16,8 +12,8 @@ export const BackButton = (props: IProps) => {
       width={isMobile ? '32' : '40'}
       height={isMobile ? '32' : '40'}
       viewBox="0 0 1024 1024"
-      className={className}
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
       onClick={onClick}>
       <path fill={color} d="M224 480h640a32 32 0 110 64H224a32 32 0 010-64z" />
       <path
