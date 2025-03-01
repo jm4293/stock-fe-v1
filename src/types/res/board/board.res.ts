@@ -1,14 +1,4 @@
-import { IUser } from '@/types/interface';
-
-interface IBoard {
-  boardSeq: number;
-  title: string;
-  content: string;
-  createdAt: Date;
-  updatedAt: Date;
-  user: IUser;
-  viewCount: number;
-}
+import { IBoard, IBoardComment } from '@/types/interface';
 
 export interface IBoardListRes {
   boards: IBoard[];
@@ -18,4 +8,10 @@ export interface IBoardListRes {
 
 export interface IBoardDetailRes {
   board: IBoard;
+}
+
+export interface IBoardCommentListRes {
+  boardComments: IBoardComment[];
+  total: number;
+  nextPage: number | null;
 }

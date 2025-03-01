@@ -1,7 +1,21 @@
-import { IBoard } from '@/types/interface';
+export interface ICreateBoardDto {
+  title: string;
+  content: string;
+}
 
-export interface ICreateBoardDto extends IBoard {}
-
-export interface IUpdateBoardDto extends IBoard {
+export interface IUpdateBoardDto {
+  title: string;
+  content: string;
   boardSeq: number;
+}
+
+export interface ICreateBoardCommentDto {
+  content: string;
+  boardSeq: number;
+}
+
+export interface IUpdateBoardCommentDto {
+  content: string;
+  boardSeq: number;
+  boardCommentSeq: number;
 }

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai/index';
 import { jwtStore } from '@/store/jwt';
 import { BoardList } from '@/pages/board/_components';
-import { BoardButton } from '@/asset/svg';
+import { BoardRegisterSvg } from '@/asset/svg';
 
 export const Board = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const Board = () => {
 
       {jwt && (
         <div className={`${isMobile ? 'bottom-24' : 'bottom-36'} absolute right-4`}>
-          <BoardButton color="#9470DC" onClick={onClickHandler} />
+          <BoardRegisterSvg color="#9470DC" onClick={onClickHandler} />
         </div>
       )}
     </div>

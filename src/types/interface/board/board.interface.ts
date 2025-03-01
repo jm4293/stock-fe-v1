@@ -1,4 +1,15 @@
+import { IBoardComment, IUser } from '@/types/interface';
+
 export interface IBoard {
+  boardSeq: number;
   title: string;
   content: string;
+  viewCount: number;
+  createdAt: Date;
+  updatedAt: Date;
+  isDeleted: boolean;
+  deletedAt: Date | null;
+  user: IUser;
+  boardComments: IBoardComment[];
+  commentTotal: number;
 }

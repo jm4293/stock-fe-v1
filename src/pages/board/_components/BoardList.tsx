@@ -18,6 +18,8 @@ export const BoardList = () => {
     navigate(`/board/detail/${boardSeq}`);
   };
 
+  console.log('data', data);
+
   return (
     <div className="pt-2">
       {status === 'success' ? (
@@ -37,16 +39,16 @@ export const BoardList = () => {
                   <div className="flex gap-4">
                     <div className="flex gap-1">
                       <HeartSvg color="#9470DC" />
-                      <Text value="4" color="black" />
+                      <Text value="0" color="gray" />
                     </div>
                     <div className="flex gap-1">
                       <CommentSvg color="#9470DC" />
-                      <Text value="4" color="black" />
+                      <Text value={String(board.commentTotal)} color="gray" />
                     </div>
                   </div>
                   <div className="flex gap-2">
                     <Text value="조회수" color="black" />
-                    <Text value={String(board.viewCount)} color="black" />
+                    <Text value={String(board.viewCount)} color="gray" />
                   </div>
                 </div>
               </div>
