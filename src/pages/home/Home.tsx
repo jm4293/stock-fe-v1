@@ -13,11 +13,9 @@ export const Home = () => {
   console.log('getJwtToken', getJwtToken);
 
   return (
-    <>
-      <div className="h-[1520px] bg-amber-50">
-        <p>홈</p>
-        <button onClick={openModal}>Open Modal</button>
-      </div>
-    </>
+    <div>
+      <p>홈</p>
+      <button onClick={openModal}>Open Modal</button>
+    </div>
   );
 };

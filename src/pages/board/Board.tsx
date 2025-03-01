@@ -17,12 +17,12 @@ export const Board = () => {
   };
 
   return (
-    <div className="pt-2">
+    <div>
       <BoardList />
 
       {jwt && (
         <div className={`${isMobile ? 'bottom-24' : 'bottom-36'} absolute right-4`}>
-          <BoardRegisterSvg color="#9470DC" onClick={onClickHandler} />
+          <BoardRegisterSvg color="#989898" onClick={onClickHandler} />
         </div>
       )}
     </div>

@@ -5,7 +5,7 @@ export const BoardDetail = () => {
   const { boardSeq } = useParams();
 
   return (
-    <div className="relative px-6 py-4">
+    <div className="relative">
       <BoardContent boardSeq={boardSeq} />
       {boardSeq && <BoardCommentList boardSeq={boardSeq} />}
     </div>

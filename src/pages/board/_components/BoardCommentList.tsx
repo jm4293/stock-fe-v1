@@ -42,17 +42,17 @@ export const BoardCommentList = (props: IProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-4 py-4">
+    <div className="flex flex-col gap-4 mt-8">
       <div className="flex items-center gap-2">
         <Text value="댓글" color="black" size="large" />
-        <Text value={String(data?.[0].data.data.total)} color="gray" size="middle" />
+        <Text value={`${String(data?.[0].data.data.total)}개`} color="gray" size="middle" />
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
         {data?.map((page) =>
           page.data.data.boardComments.length > 0 ? (
             page.data.data.boardComments.map((boardComment) => (
-              <div key={boardComment.boardCommentSeq} className="flex flex-col gap-2 pb-2">
+              <div key={boardComment.boardCommentSeq} className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <Image

@@ -1,9 +1,9 @@
-import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 import { ISvgProps } from '@/asset/svg/interface';
+import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 
 interface IProps extends ISvgProps {}
 
-export const BackSvg = (props: IProps) => {
+export const BellSvg = (props: IProps) => {
   const { color, onClick, className } = props;
   const { isMobile } = useDeviceLayout();
 
@@ -11,14 +11,17 @@ export const BackSvg = (props: IProps) => {
     <svg
       width={isMobile ? '26' : '34'}
       height={isMobile ? '26' : '34'}
-      viewBox="0 0 1024 1024"
+      viewBox="0 0 24 24"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       onClick={onClick}>
-      <path fill={color} d="M224 480h640a32 32 0 110 64H224a32 32 0 010-64z" />
       <path
-        fill={color}
-        d="M237.248 512l265.408 265.344a32 32 0 01-45.312 45.312l-288-288a32 32 0 010-45.312l288-288a32 32 0 1145.312 45.312L237.248 512z"
+        d="M12 5C10 5 6 6.2 6 11V15L4 17H9M12 5C16.8 5 18 9 18 11V15L20 17H15M12 5V3M9 17V18C9 19 9.6 21 12 21C14.4 21 15 19 15 18V17M9 17H15"
+        stroke={color}
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
       />
     </svg>
   );

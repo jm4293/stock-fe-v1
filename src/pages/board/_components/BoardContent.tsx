@@ -50,7 +50,7 @@ export const BoardContent = (props: IProps) => {
   }, [boardDetailQuery.isSuccess]);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <div className="flex justify-between items-center">
         <Text value="게시글" color="black" size="large" />
         {boardSeq && <CloseSvg color="#989898" onClick={(event) => onDeleteClickHandler(event)} />}
@@ -64,7 +64,7 @@ export const BoardContent = (props: IProps) => {
           </div>
         )}
 
-        <div className="col-span-5 flex flex-col gap-4">
+        <div className="col-span-5 flex flex-col gap-2">
           <Input
             type="text"
             value={title}

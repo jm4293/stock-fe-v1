@@ -4,7 +4,7 @@ import { useAtomValue } from 'jotai/index';
 import { jwtStore } from '@/store/jwt';
 import { Button } from '@/components/button';
 import { useAuthMutation } from '@/hooks/auth';
-import { BackSvg } from '@/asset/svg';
+import { BackSvg, BellSvg } from '@/asset/svg';
 
 export const Header = () => {
   const params = useParams();
@@ -40,22 +40,22 @@ export const Header = () => {
     navigate(-1);
   };
 
-  const onButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.stopPropagation();
-
-    const { name } = event.currentTarget;
-
-    switch (name) {
-      case '로그인':
-        navigate('/auth/login');
-        break;
-      case '로그아웃':
-        onLogoutMutation.mutate();
-        break;
-      default:
-        break;
-    }
-  };
+  // const onButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  //   event.stopPropagation();
+  //
+  //   const { name } = event.currentTarget;
+  //
+  //   switch (name) {
+  //     case '로그인':
+  //       navigate('/auth/login');
+  //       break;
+  //     case '로그아웃':
+  //       onLogoutMutation.mutate();
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
 
   return (
     <div className="header">
@@ -63,13 +63,14 @@ export const Header = () => {
 
       <Text value={pathName()} color="gray" size="large" />
 
-      <div>
-        {jwt ? (
-          <Button text="로그아웃" color="gray" onClick={(event) => onButtonClick(event)} />
-        ) : (
-          <Button text="로그인" color="gray" onClick={(event) => onButtonClick(event)} />
-        )}
-      </div>
+      {/*<div>*/}
+      {/*  {jwt ? (*/}
+      {/*    <Button text="로그아웃" color="gray" onClick={(event) => onButtonClick(event)} />*/}
+      {/*  ) : (*/}
+      {/*    <Button text="로그인" color="gray" onClick={(event) => onButtonClick(event)} />*/}
+      {/*  )}*/}
+      {/*</div>*/}
+      <BellSvg color="#989898" />
     </div>
   );
 };
