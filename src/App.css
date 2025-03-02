@@ -72,7 +72,7 @@ button {
   width: 100%;
   position: absolute;
   top: 0;
-  padding: 0 20px;
+  padding: 0 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -89,7 +89,7 @@ button {
 }
 
 .layout > .outlet > div {
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   background-color: white;
 }
 
