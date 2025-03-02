@@ -76,20 +76,22 @@ export class AxiosConfig {
           const { message } = error.response.data;
           alert(message);
         } else if (error.response?.status === 401) {
-          try {
-            const refreshResponse = await AuthApi.postRefreshToken();
+          const decryptEmail = localStorage.getItem('state');
 
-            const newAccessToken = refreshResponse.data.data.accessToken;
-
-            store.set(jwtStore.getJwt, newAccessToken);
-
-            originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
-            return this._axiosInstance(originalRequest);
-          } catch (refreshError) {
-            console.error('Refresh token 요청 실패:', refreshError);
+          if (!decryptEmail) {
+            return;
           }
+
+          const refreshResponse = await AuthApi.postRefreshToken();
+          const newAccessToken = refreshResponse.data.data.accessToken;
+
+          store.set(jwtStore.getJwt, newAccessToken);
+
+          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+
+          return this._axiosInstance(originalRequest);
         } else if (error.response?.status === 403) {
-          // alert('로그인이 필요합니다.');
+          alert('세션이 만료되었습니다.');
         }
 
         return Promise.reject(error);
