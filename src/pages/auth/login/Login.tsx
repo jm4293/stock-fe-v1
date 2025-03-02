@@ -22,8 +22,23 @@ export const Login = () => {
 
   const { onLoginEmailMutation, onLoginOauthMutation } = useAuthMutation();
 
+  const onEnterHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation();
+    navigate('/home');
+  };
+
   const onLoginHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
+
+    if (!email) {
+      alert('이메일을 입력해주세요.');
+      return;
+    }
+
+    if (!password) {
+      alert('비밀번호를 입력해주세요.');
+      return;
+    }
 
     onLoginEmailMutation.mutate({ email, password });
   };
@@ -109,8 +124,9 @@ export const Login = () => {
 
       <Margin direction="bottom" size={14} />
 
-      <div className="w-full">
+      <div className="w-full flex flex-col gap-4">
         <Button text="입장하기" onClick={(event) => onLoginHandler(event)} color="green" />
+        <Button text="둘러보기" onClick={(event) => onEnterHandler(event)} color="gray" />
       </div>
 
       <Margin direction="bottom" size={14} />

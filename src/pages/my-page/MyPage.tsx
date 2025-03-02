@@ -55,9 +55,9 @@ export const MyPage = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-5">
-          <Text value="로그인" color="black" size="middle" onClick={(event) => onClickLoginHandler(event)} />
+          <Text value="로그인이 필요합니디." color="black" size="middle" />
 
-          <Text value="로그인이 필요합니디." color="gray" />
+          <Text value="로그인 하기" color="gray" onClick={(event) => onClickLoginHandler(event)} />
         </div>
       )}
     </div>

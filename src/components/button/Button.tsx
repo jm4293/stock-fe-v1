@@ -27,7 +27,7 @@ export const Button = (props: IProps) => {
 
   return (
     <button
-      className={`${isMobile ? 'py-2 px-4' : 'py-3 px-5'} ${style()} ${children} w-full`}
+      className={`w-full ${isMobile ? 'py-2 px-4' : 'py-3 px-5'} ${style()} ${children}`}
       onClick={(event) => onClick(event)}
       disabled={disabled}
       name={text}>

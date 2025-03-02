@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import { Header } from '@/common/layout/Header';
+import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 
 export const Layout = () => {
   // const jwt = useAtomValue(jwtStore.getJwt);
@@ -13,6 +14,8 @@ export const Layout = () => {
   //     onRefreshTokenMutation.mutate();
   //   }
   // }, []);
+
+  const { isMobile } = useDeviceLayout();
 
   return (
     <div className="layout">

@@ -9,8 +9,11 @@ import { Text } from '@/components/text';
 import { useAuthMutation } from '@/hooks/auth';
 import { ImageTypeEnum } from 'constant/enum';
 import { ISignUpDto } from '@/types/dto';
+import { useNavigate } from 'react-router-dom';
 
 export const SignUp = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState<ISignUpDto>({
     nickname: '',
     name: '',
@@ -83,6 +86,12 @@ export const SignUp = () => {
     onSignUpMutation.mutate(formData);
   };
 
+  const onEnterHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation();
+
+    navigate('/auth/login');
+  };
+
   return (
     <AuthLayout>
       <Image src={logo} alt="sign-in-logo" type={ImageTypeEnum.LARGE_LOGO} />
@@ -91,24 +100,29 @@ export const SignUp = () => {
 
       <Text value="회원가입" color="black" size="large" />
 
+      <Margin direction="bottom" size={2} />
+
       <div className="w-full flex flex-col gap-10">
-        <div className="flex flex-col gap-2">
+        <div className="w-full flex flex-col gap-2">
           <Text value="인증정보" color="gray" />
-          <div className="grid grid-cols-6 gap-2">
-            <Input
-              type="email"
-              name="email"
-              className="col-span-5"
-              value={formData.email}
-              onChange={(event) => onChangeHandler(event)}
-              placeholder="이메일 주소"
-              disabled={confirmDuplicateEmail}
-            />
-            <Button
-              text={`${confirmDuplicateEmail ? '완료' : '중복 확인'}`}
-              onClick={(event) => onDuplicateCheckHandler(event)}
-              disabled={onCheckEmailMutation.isPending}
-            />
+          <div className="w-full grid grid-cols-6 gap-2">
+            <div className="col-span-4">
+              <Input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={(event) => onChangeHandler(event)}
+                placeholder="이메일 주소"
+                disabled={confirmDuplicateEmail}
+              />
+            </div>
+            <div className="col-span-2">
+              <Button
+                text={`${confirmDuplicateEmail ? '완료' : '중복 확인'}`}
+                onClick={(event) => onDuplicateCheckHandler(event)}
+                disabled={onCheckEmailMutation.isPending}
+              />
+            </div>
           </div>
           <Input
             type="password"
@@ -151,12 +165,16 @@ export const SignUp = () => {
           />
         </div>
 
-        <Button
-          text="회원가입"
-          color="green"
-          onClick={(event) => onSubmitHandler(event)}
-          disabled={onSignUpMutation.isPending}
-        />
+        <div className="flex flex-col gap-4">
+          <Button
+            text="회원가입"
+            color="green"
+            onClick={(event) => onSubmitHandler(event)}
+            disabled={onSignUpMutation.isPending}
+          />
+
+          <Button text="뒤로가기" onClick={(event) => onEnterHandler(event)} color="gray" />
+        </div>
       </div>
     </AuthLayout>
   );

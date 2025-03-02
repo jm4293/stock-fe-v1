@@ -139,7 +139,7 @@ button {
 
 @media screen and (min-width: 1024px) {
   .layout {
-    max-width: 960px;
+    max-width: 600px;
     margin: 0 auto;
   }
   .header{

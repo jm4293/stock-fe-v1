@@ -36,7 +36,7 @@ export const Text = (props: IProps) => {
       case 'large':
         return 'text-xl';
       default:
-        return isMobile ? 'text-sm' : 'text-xl';
+        return isMobile ? 'text-sm' : 'text-base';
     }
   };
 
