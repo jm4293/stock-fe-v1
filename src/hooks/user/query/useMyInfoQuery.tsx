@@ -5,19 +5,15 @@ interface IProps {
   enabled?: boolean;
 }
 
-export const useMyInfoQuery = (props: IProps) => {
-  const { enabled } = props;
-
+export const useMyInfoQuery = () => {
   return useQuery({
     queryKey: ['user-my-info'],
     queryFn: () => UserApi.getMyInfo(),
     select: (res) => {
-      const { email, user } = res.data.data;
-      const { name, nickname, birthdate, thumbnail } = user;
+      const { email, nickname, name, thumbnail, userAccountType } = res.data.data;
 
-      return { email, name, nickname, birthdate, thumbnail };
+      return { email, name, nickname, thumbnail, userAccountType };
     },
     staleTime: 1000 * 60 * 60 * 6, // 6시간,
-    enabled,
   });
 };

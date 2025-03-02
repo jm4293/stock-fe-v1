@@ -4,7 +4,7 @@ import { IUser } from '@/types/interface';
 export interface IUserAccount {
   userAccountSeq: number;
   status: UserAccountStatusEnum;
-  accountType: UserAccountTypeEnum;
+  userAccountType: UserAccountTypeEnum;
   email: string;
   password: string | null;
   refreshToken: string | null;

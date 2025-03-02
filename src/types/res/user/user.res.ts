@@ -1,6 +1,9 @@
-import { IUser } from '@/types/interface';
+import { UserAccountTypeEnum } from '@/constant/enum';
 
 export interface IMyInfoRes {
   email: string;
-  user: IUser;
+  nickname: string;
+  name: string;
+  thumbnail: string;
+  userAccountType: UserAccountTypeEnum;
 }
