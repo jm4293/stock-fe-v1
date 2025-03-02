@@ -1,9 +1,5 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Text } from '@/components/text';
-import { useAtomValue } from 'jotai/index';
-import { jwtStore } from '@/store/jwt';
-import { Button } from '@/components/button';
-import { useAuthMutation } from '@/hooks/auth';
 import { BackSvg, BellSvg } from '@/asset/svg';
 
 export const Header = () => {
@@ -11,9 +7,7 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const jwt = useAtomValue(jwtStore.getJwt);
-
-  const { onLogoutMutation } = useAuthMutation();
+  const decryptEmail = localStorage.getItem('state');
 
   const pathName = () => {
     const { pathname } = location;
@@ -40,22 +34,16 @@ export const Header = () => {
     navigate(-1);
   };
 
-  // const onButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  //   event.stopPropagation();
-  //
-  //   const { name } = event.currentTarget;
-  //
-  //   switch (name) {
-  //     case '로그인':
-  //       navigate('/auth/login');
-  //       break;
-  //     case '로그아웃':
-  //       onLogoutMutation.mutate();
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
+  const onBellButtonClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    event.stopPropagation();
+
+    if (!decryptEmail) {
+      alert('로그인이 필요한 서비스입니다.');
+      navigate('/auth/login');
+    } else {
+      navigate('/notification');
+    }
+  };
 
   return (
     <div className="header">
@@ -63,14 +51,7 @@ export const Header = () => {
 
       <Text value={pathName()} color="gray" size="large" />
 
-      {/*<div>*/}
-      {/*  {jwt ? (*/}
-      {/*    <Button text="로그아웃" color="gray" onClick={(event) => onButtonClick(event)} />*/}
-      {/*  ) : (*/}
-      {/*    <Button text="로그인" color="gray" onClick={(event) => onButtonClick(event)} />*/}
-      {/*  )}*/}
-      {/*</div>*/}
-      <BellSvg color="#989898" />
+      <BellSvg color="#989898" onClick={(event) => onBellButtonClick(event)} />
     </div>
   );
 };
