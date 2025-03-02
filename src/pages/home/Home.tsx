@@ -14,7 +14,6 @@ export const Home = () => {
 
   return (
     <div>
-      <p>홈</p>
       <button onClick={openModal}>Open Modal</button>
     </div>
   );
