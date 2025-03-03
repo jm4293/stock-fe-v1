@@ -10,6 +10,13 @@ class BoardApi extends AxiosConfig {
     return await this.get<IBoardListRes, { pageParam: number }>({ url: `${this._baseURL}`, params: { pageParam } });
   }
 
+  async getBoardListMine(pageParam: number) {
+    return await this.get<IBoardListRes, { pageParam: number }>({
+      url: `${this._baseURL}/mine`,
+      params: { pageParam },
+    });
+  }
+
   async getBoardDetail(boardSeq: number) {
     return await this.get<IBoardDetailRes, null>({ url: `${this._baseURL}/${boardSeq}` });
   }
@@ -36,6 +43,13 @@ class BoardApi extends AxiosConfig {
 
     return await this.get<IBoardCommentListRes, { pageParam: number }>({
       url: `${this._baseURL}/${boardSeq}/comment`,
+      params: { pageParam },
+    });
+  }
+
+  async getBoardCommentListMine(pageParam: number) {
+    return await this.get<IBoardCommentListRes, { pageParam: number }>({
+      url: `${this._baseURL}/comment/mine`,
       params: { pageParam },
     });
   }

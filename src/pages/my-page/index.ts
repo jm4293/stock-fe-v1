@@ -1,1 +1,3 @@
-export * from "./MyPage"
+export * from './board';
+export * from './board-comment';
+export * from './MyPage';

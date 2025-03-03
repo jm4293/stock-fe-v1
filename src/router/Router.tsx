@@ -4,7 +4,7 @@ import { Layout } from '@/common/layout';
 import { Home } from '@/pages/home';
 import { Stock } from 'pages/stock';
 import { Board, BoardDetail } from '@/pages/board';
-import { MyPage } from '@/pages/my-page';
+import { MyPage, MyPageBoard, MyPageBoardComment } from '@/pages/my-page';
 import { SignUp } from '@/pages/auth/sign-up';
 
 export const Router = () => {
@@ -25,6 +25,8 @@ export const Router = () => {
           <Route path="/board/detail" element={<BoardDetail />} />
           <Route path="/board/detail/:boardSeq" element={<BoardDetail />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/mypage/board" element={<MyPageBoard />} />
+          <Route path="/mypage/comment" element={<MyPageBoardComment />} />
         </Route>
       </Routes>
     </BrowserRouter>

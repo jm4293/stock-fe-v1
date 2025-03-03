@@ -27,39 +27,52 @@ export const MyPage = () => {
     }
   };
 
-  return (
-    <div>
-      {myInfoQuery.isSuccess ? (
-        <div className="flex flex-col gap-10">
-          <div className="flex items-center gap-5">
-            <div>
-              <Image src={myInfoQuery.data.thumbnail} alt="profile" type={ImageTypeEnum.THUMBNAIL} />
-            </div>
-            <div>
-              <Text value={myInfoQuery.data.nickname} color="black" size="middle" />
-              <Text value={myInfoQuery.data.email} color="gray" />
-            </div>
-          </div>
+  const onClickHandler = (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
+    event.preventDefault();
 
-          <div className="flex flex-col gap-3">
-            <Text value="게시판" color="black" size="middle" />
-            <div className="flex flex-col gap-2">
-              <Text value="작성한 게시글" color="gray" />
-              <Text value="작성한 댓글" color="gray" />
-            </div>
-          </div>
+    const id = event.currentTarget.id;
 
-          <div>
-            <Text value="로그아웃" color="red" size="middle" onClick={(event) => onClickLogoutHandler(event)} />
-          </div>
+    switch (id) {
+      case 'my-board':
+        navigate('/mypage/board');
+        break;
+      case 'my-comment':
+        navigate('/mypage/comment');
+        break;
+      default:
+        break;
+    }
+  };
+
+  return myInfoQuery.isSuccess ? (
+    <div className="flex flex-col gap-10">
+      <div className="flex items-center gap-4">
+        <div>
+          <Image src={myInfoQuery.data.thumbnail} alt="profile" type={ImageTypeEnum.THUMBNAIL} />
         </div>
-      ) : (
-        <div className="flex flex-col gap-5">
-          <Text value="로그인이 필요합니디." color="black" size="middle" />
-
-          <Text value="로그인 하기" color="gray" onClick={(event) => onClickLoginHandler(event)} />
+        <div>
+          <Text value={myInfoQuery.data.nickname} color="black" size="middle" />
+          <Text value={myInfoQuery.data.email} color="gray" />
         </div>
-      )}
+      </div>
+
+      <div className="flex flex-col gap-6">
+        <Text value="게시판" color="black" size="large" />
+        <div className="flex flex-col gap-2">
+          <Text value="작성한 게시글" color="black" id="my-board" onClick={(event) => onClickHandler(event)} />
+          <Text value="작성한 댓글" color="black" id="my-comment" onClick={(event) => onClickHandler(event)} />
+        </div>
+      </div>
+
+      <div>
+        <Text value="로그아웃" color="red" size="middle" onClick={(event) => onClickLogoutHandler(event)} />
+      </div>
+    </div>
+  ) : (
+    <div className="flex flex-col gap-6">
+      <Text value="로그인이 필요합니디." color="black" size="middle" />
+
+      <Text value="로그인 하기" color="gray" onClick={(event) => onClickLoginHandler(event)} />
     </div>
   );
 };
