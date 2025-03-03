@@ -91,6 +91,9 @@ export class AxiosConfig {
 
           return this._axiosInstance(originalRequest);
         } else if (error.response?.status === 403) {
+          localStorage.removeItem('state');
+          window.location.replace('/home');
+
           alert('세션이 만료되었습니다.');
         }
 
