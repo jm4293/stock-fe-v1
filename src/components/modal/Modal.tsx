@@ -4,8 +4,10 @@ import { IModalProps } from './interface';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { modalStore } from '@/store/modal';
 
-export const Modal = ({ children }: IModalProps) => {
-  const isModalOpen = useAtomValue(modalStore.isModalOpenAtom);
+export const Modal = (props: IModalProps) => {
+  const { children } = props;
+
+  const isModalOpen = useAtomValue(modalStore.isModalAtom);
   const closeModal = useSetAtom(modalStore.closeModal);
 
   if (!isModalOpen) return null;

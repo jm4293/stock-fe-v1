@@ -1,13 +1,13 @@
 import { atom } from 'jotai';
 
-const isModalOpenAtom = atom(false);
+const isModalAtom = atom(false);
 
 export const modalStore = {
-  isModalOpenAtom,
+  isModalAtom,
   openModal: atom(null, (get, set) => {
-    set(isModalOpenAtom, true);
+    set(isModalAtom, true);
   }),
   closeModal: atom(null, (get, set) => {
-    set(isModalOpenAtom, false);
+    set(isModalAtom, false);
   }),
 };

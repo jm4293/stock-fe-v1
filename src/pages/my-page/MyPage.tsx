@@ -56,7 +56,7 @@ export const MyPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4">
         <Text value="게시판" color="black" size="large" />
         <div className="flex flex-col gap-2">
           <Text value="작성한 게시글" color="black" id="my-board" onClick={(event) => onClickHandler(event)} />
@@ -70,7 +70,7 @@ export const MyPage = () => {
     </div>
   ) : (
     <div className="flex flex-col gap-6">
-      <Text value="로그인이 필요합니디." color="black" size="middle" />
+      <Text value="로그인이 필요합니다." color="black" size="middle" />
 
       <Text value="로그인 하기" color="gray" onClick={(event) => onClickLoginHandler(event)} />
     </div>
