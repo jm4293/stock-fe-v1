@@ -13,7 +13,7 @@ export const BackSvg = (props: IProps) => {
       height={isMobile ? '26' : '34'}
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={`${onClick ? 'cursor-pointer' : ''} ${className}`}
       onClick={onClick}>
       <path fill={color} d="M224 480h640a32 32 0 110 64H224a32 32 0 010-64z" />
       <path

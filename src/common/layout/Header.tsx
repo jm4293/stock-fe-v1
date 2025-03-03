@@ -12,9 +12,9 @@ export const Header = () => {
   const pathName = () => {
     const { pathname } = location;
 
-    const depth_1 = pathname.split('/')[1];
+    const currentPath = pathname.split('/')[1];
 
-    switch (depth_1) {
+    switch (currentPath) {
       case 'home':
         return '홈';
       case 'stock':
@@ -49,7 +49,7 @@ export const Header = () => {
     <div className="header">
       <BackSvg color="#989898" onClick={(event) => onBackButtonClick(event)} />
 
-      <Text value={pathName()} color="gray" size="large" />
+      <Text value={pathName()} color="black" size="large" />
 
       <BellSvg color="#989898" onClick={(event) => onBellButtonClick(event)} />
     </div>
