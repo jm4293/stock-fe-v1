@@ -20,7 +20,6 @@ export const requestForToken = async (): Promise<string | null> => {
   try {
     const token = await getToken(messaging, { vapidKey: web_push_token });
     if (token) {
-      console.log('FCM Token:', token);
       return token;
     } else {
       console.log('No registration token available.');

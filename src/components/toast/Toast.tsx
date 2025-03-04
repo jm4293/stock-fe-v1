@@ -20,7 +20,11 @@ export const Toast = (props: IProps) => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    (async () => await requestForToken())();
+    (async () => {
+      const token = await requestForToken();
+
+      return token;
+    })();
   }, []);
 
   useEffect(() => {
