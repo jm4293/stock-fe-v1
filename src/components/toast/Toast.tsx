@@ -1,6 +1,6 @@
 import { toastStore } from '@/store/toast';
 import ReactDOM from 'react-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { onMessageListener, requestForToken } from '@/common/firebase-config';
 import { useSetAtom } from 'jotai';
 import { useAtomValue } from 'jotai/index';
@@ -17,14 +17,36 @@ export const Toast = (props: IProps) => {
   const openToast = useSetAtom(toastStore.openToast);
   const closeToast = useSetAtom(toastStore.closeToast);
 
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
     (async () => await requestForToken())();
+  }, []);
 
-    onMessageListener().then((payload) => {
+  useEffect(() => {
+    const messageListener = (payload: any) => {
       console.log('Received in foreground:', payload);
       openToast(payload.notification.body);
-    });
-  }, []);
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(() => {
+        closeToast();
+      }, 3000);
+    };
+
+    const unsubscribe = onMessageListener(messageListener);
+
+    return () => {
+      unsubscribe();
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [openToast, closeToast]);
 
   useEffect(() => {
     if (isOpenToast) {
