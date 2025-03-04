@@ -1,13 +1,15 @@
 import { atom } from 'jotai';
 
-const isToastAtom = atom(false);
+const toastAtom = atom({ isOpen: false, message: '' });
 
 export const toastStore = {
-  isToastAtom,
-  openToast: atom(null, (get, set) => {
-    set(isToastAtom, true);
+  toastAtom,
+  toastMessage: atom((get) => get(toastAtom).message),
+  isOpenToast: atom((get) => get(toastAtom).isOpen),
+  openToast: atom(null, (get, set, message: string) => {
+    set(toastAtom, { isOpen: true, message });
   }),
   closeToast: atom(null, (get, set) => {
-    set(isToastAtom, false);
+    set(toastAtom, { isOpen: false, message: '' });
   }),
 };
