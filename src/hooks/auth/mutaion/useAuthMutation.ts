@@ -5,6 +5,9 @@ import { ICheckEmailDto, ILoginEmailDto, ILoginOauthDto, ISignUpDto } from 'type
 import { useSetAtom } from 'jotai';
 import { jwtStore } from '@/store/jwt';
 import CryptoJS from 'crypto-js';
+import { getMessaging, deleteToken } from 'firebase/messaging';
+import { requestForToken } from '@/common/firebase-config';
+import UserApi from '@/api-url/user/user.api';
 
 export const useAuthMutation = () => {
   const navigate = useNavigate();
@@ -26,12 +29,14 @@ export const useAuthMutation = () => {
 
   const onLoginEmailMutation = useMutation({
     mutationFn: (dto: ILoginEmailDto) => AuthApi.postSignInEmail(dto),
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       const { accessToken, email } = res.data.data;
 
       const encryptedEmail = CryptoJS.AES.encrypt(email, import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY).toString();
       localStorage.setItem('state', encryptedEmail);
       setJwtToken(accessToken);
+
+      await _registerFirebaseToken();
 
       navigate('/home');
     },
@@ -42,12 +47,14 @@ export const useAuthMutation = () => {
 
   const onLoginOauthMutation = useMutation({
     mutationFn: (dto: ILoginOauthDto) => AuthApi.postSignInOauth(dto),
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       const { accessToken, email } = res.data.data;
 
       const encryptedEmail = CryptoJS.AES.encrypt(email, import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY).toString();
       localStorage.setItem('state', encryptedEmail);
       setJwtToken(accessToken);
+
+      await _registerFirebaseToken();
 
       navigate('/home');
     },
@@ -63,7 +70,11 @@ export const useAuthMutation = () => {
   const onLogoutMutation = useMutation({
     mutationFn: () => AuthApi.postLogout(),
     onSuccess: async () => {
-      await queryClient.clear();
+      queryClient.clear();
+
+      const firebase_messaging = getMessaging();
+
+      await deleteToken(firebase_messaging);
 
       localStorage.removeItem('state');
       setJwtToken('');
@@ -85,6 +96,14 @@ export const useAuthMutation = () => {
       // navigate('/auth/login', { replace: true });
     },
   });
+
+  const _registerFirebaseToken = async () => {
+    const token = await requestForToken();
+
+    if (token) {
+      await UserApi.postRegisterPushToken({ pushToken: token });
+    }
+  };
 
   return {
     onLoginEmailMutation,
