@@ -27,8 +27,9 @@ export default defineConfig({
             };
 
             let fileContent = contents.toString();
+
             Object.keys(env).forEach((key) => {
-              fileContent = fileContent.replace(new RegExp(`\\\${${key}}`, 'g'), env[key] || '');
+              fileContent = fileContent.replace(new RegExp(`VITE_${key}`, 'g'), env[key] || '');
             });
 
             return fileContent;

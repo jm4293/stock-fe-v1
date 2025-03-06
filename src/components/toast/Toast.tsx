@@ -20,14 +20,6 @@ export const Toast = (props: IProps) => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    (async () => {
-      const token = await requestForToken();
-
-      return token;
-    })();
-  }, []);
-
-  useEffect(() => {
     const messageListener = (payload: any) => {
       console.log('Received in foreground:', payload);
       openToast(payload.notification.body);
