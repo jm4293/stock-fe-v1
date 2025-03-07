@@ -9,8 +9,8 @@ export const CloseSvg = (props: IProps) => {
 
   return (
     <svg
-      width={isMobile ? '26' : '34'}
-      height={isMobile ? '26' : '34'}
+      width={isMobile ? '22' : '30'}
+      height={isMobile ? '22' : '30'}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import AuthApi from '../../../api-url/auth/auth.api';
 import { ICheckEmailDto, ILoginEmailDto, ILoginOauthDto, ISignUpDto } from 'types/dto';
 import { useSetAtom } from 'jotai';
 import { jwtStore } from '@/store/jwt';
 import CryptoJS from 'crypto-js';
 import { getMessaging, deleteToken } from 'firebase/messaging';
 import { requestForToken } from '@/common/firebase-config';
+import AuthApi from '@/api-url/auth/auth.api';
 import UserApi from '@/api-url/user/user.api';
 
 export const useAuthMutation = () => {
