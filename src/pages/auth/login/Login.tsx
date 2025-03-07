@@ -7,12 +7,15 @@ import { useAuthMutation } from '@/hooks/auth';
 import { UserAccountTypeEnum } from 'constant/enum';
 import { CheckBoxSvg, OAuthGoogleButtonSvg, OAuthGoogleSvg } from '@/asset/svg';
 import { useEffect, useState } from 'react';
+import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { state } = useLocation();
   const location = useLocation();
+  const { state } = useLocation();
   const { provider } = useParams();
+
+  const { isMobile } = useDeviceLayout();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -125,12 +128,13 @@ export const Login = () => {
         <Button text="로그인" onClick={(event) => onLoginHandler(event)} disabled={onLoginEmailMutation.isPending} />
       </div>
 
-      <div className="mb-12 flex justify-between">
+      <div className={`mb-12 flex justify-between flex-wrap ${isMobile ? 'flex-col' : 'flex-row'}`}>
         <div className="flex items-center gap-1.5">
           <CheckBoxSvg isCheck={isAutoLogin} onClick={() => setIsAutoLogin(!isAutoLogin)} />
           <Text value="자동로그인" id="find-id" color="#000000" onClick={() => setIsAutoLogin(!isAutoLogin)} />
         </div>
-        <div className="flex items-center gap-2.5">
+
+        <div className={`flex gap-2.5 ${isMobile ? 'justify-center' : ''}`}>
           <Text value="아이디 찾기" id="find-id" color="#000000" onClick={onClickHandler} />
           <div className="w-[1px] h-2/3 bg-[#B5B5B5]" />
           <Text value="비밀번호 찾기" id="find-password" color="#000000" onClick={onClickHandler} />

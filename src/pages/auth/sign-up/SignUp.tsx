@@ -94,10 +94,6 @@ export const SignUp = () => {
 
   return (
     <AuthLayout>
-      <Image src={logo} alt="sign-in-logo" type={ImageTypeEnum.LARGE_LOGO} />
-
-      <Margin direction="bottom" size={14} />
-
       <div className="w-full flex flex-col gap-10">
         <div className="w-full flex flex-col gap-2">
           <div className="w-full grid grid-cols-6 gap-2">
