@@ -52,7 +52,7 @@ export const BoardContent = (props: IProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-between items-center">
-        <Text value="게시글" color="black" size="large" />
+        <Text value="게시글" color="#000000" size="lg" />
         {boardSeq && <CloseSvg color="#989898" onClick={(event) => onDeleteClickHandler(event)} />}
       </div>
 
@@ -67,6 +67,7 @@ export const BoardContent = (props: IProps) => {
         <div className="col-span-5 flex flex-col gap-2">
           <Input
             type="text"
+            title="제목"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="제목을 입력해주세요"

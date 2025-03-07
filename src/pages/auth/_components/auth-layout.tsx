@@ -23,9 +23,8 @@ export const AuthLayout = (props: IProps) => {
   return (
     <div className="h-[100vh] flex justify-center overflow-x-hidden overflow-y-auto">
       <div
-        className={`${isMobile ? 'w-full' : 'w-[80vw]'} max-w-[600px] px-10 pb-[50px] flex flex-col items-center overflow-y-auto`}>
-        {children}
         className={`${isMobile ? 'w-full' : 'w-[80vw]'} max-w-[660px] px-10 flex flex-col items-center overflow-y-auto`}>
+        <div className="w-full h-14  max-h-[56px] mb-14 grid grid-cols-3 items-center">
           <BackSvg color="#000000" className="col-span-1" onClick={(event) => onClickHandler(event)} />
           <Text value="로그인" color="#282828" size="lg" align="center" />
         </div>

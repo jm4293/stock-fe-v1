@@ -44,8 +44,8 @@ export const BoardCommentList = (props: IProps) => {
   return (
     <div className="flex flex-col gap-4 mt-8">
       <div className="flex items-center gap-2">
-        <Text value="댓글" color="black" size="large" />
-        <Text value={`${String(data?.[0].data.data.total)}개`} color="gray" size="middle" />
+        <Text value="댓글" color="#000000" size="lg" />
+        <Text value={`${String(data?.[0].data.data.total)}개`} color="#000000" />
       </div>
 
       <div className="flex flex-col gap-6">
@@ -60,7 +60,7 @@ export const BoardCommentList = (props: IProps) => {
                       type={ImageTypeEnum.THUMBNAIL}
                       alt="board-comment-thumbnail"
                     />
-                    <Text value={boardComment.user.nickname} color="black" />
+                    <Text value={boardComment.user.nickname} color="#000000" />
                   </div>
                   <CloseSvg
                     color="#989898"
@@ -69,13 +69,13 @@ export const BoardCommentList = (props: IProps) => {
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <Text value={boardComment.content} color="black" />
-                  <Text value={dayjs(boardComment.createdAt).format('YY년 MM월 DD일 HH시 mm분')} color="gray" />
+                  <Text value={boardComment.content} color="#000000" />
+                  <Text value={dayjs(boardComment.createdAt).format('YY년 MM월 DD일 HH시 mm분')} color="#000000" />
                 </div>
               </div>
             ))
           ) : (
-            <Text value="댓글이 없습니다." color="gray" />
+            <Text value="댓글이 없습니다." color="#000000" />
           ),
         )}
       </div>
@@ -88,6 +88,7 @@ export const BoardCommentList = (props: IProps) => {
 
       <Input
         type="text"
+        title="댓글"
         value={comment}
         onChange={(event) => setComment(event.target.value)}
         placeholder="댓글을 입력해주세요"

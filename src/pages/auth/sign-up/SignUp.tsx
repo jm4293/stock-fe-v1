@@ -98,17 +98,13 @@ export const SignUp = () => {
 
       <Margin direction="bottom" size={14} />
 
-      <Text value="회원가입" color="black" size="large" />
-
-      <Margin direction="bottom" size={2} />
-
       <div className="w-full flex flex-col gap-10">
         <div className="w-full flex flex-col gap-2">
-          <Text value="인증정보" color="gray" />
           <div className="w-full grid grid-cols-6 gap-2">
             <div className="col-span-4">
               <Input
                 type="email"
+                title="이메일"
                 name="email"
                 value={formData.email}
                 onChange={(event) => onChangeHandler(event)}
@@ -126,6 +122,7 @@ export const SignUp = () => {
           </div>
           <Input
             type="password"
+            title="비밀번호"
             name="password"
             value={formData.password}
             onChange={(event) => onChangeHandler(event)}
@@ -133,6 +130,7 @@ export const SignUp = () => {
           />
           <Input
             type="password"
+            title="비밀번호 확인"
             value={confirmPassword}
             onChange={(event) => setConfirmPassword(event.target.value)}
             placeholder="비밀번호 확인"
@@ -140,9 +138,9 @@ export const SignUp = () => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <Text value="개인정보" color="gray" />
           <Input
             type="text"
+            title="닉네임"
             name="nickname"
             value={formData.nickname}
             onChange={(event) => onChangeHandler(event)}
@@ -150,6 +148,7 @@ export const SignUp = () => {
           />
           <Input
             type="text"
+            title="이름"
             name="name"
             value={formData.name}
             onChange={(event) => onChangeHandler(event)}
@@ -157,6 +156,7 @@ export const SignUp = () => {
           />
           <Input
             type="text"
+            title="생년월일 8자리"
             name="birthdate"
             value={formData.birthdate}
             onChange={(event) => onChangeHandler(event)}
@@ -166,14 +166,9 @@ export const SignUp = () => {
         </div>
 
         <div className="flex flex-col gap-4">
-          <Button
-            text="회원가입"
-            color="green"
-            onClick={(event) => onSubmitHandler(event)}
-            disabled={onSignUpMutation.isPending}
-          />
+          <Button text="회원가입" onClick={(event) => onSubmitHandler(event)} disabled={onSignUpMutation.isPending} />
 
-          <Button text="뒤로가기" onClick={(event) => onEnterHandler(event)} color="gray" />
+          <Button text="뒤로가기" onClick={(event) => onEnterHandler(event)} />
         </div>
       </div>
     </AuthLayout>

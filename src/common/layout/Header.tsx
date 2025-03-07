@@ -49,9 +49,9 @@ export const Header = () => {
 
   return (
     <div className="header">
-      <BackSvg color="#989898" onClick={(event) => onBackButtonClick(event)} />
+      <BackSvg color="#000000" onClick={(event) => onBackButtonClick(event)} />
 
-      <Text value={pathName()} color="black" size="large" />
+      <Text value={pathName()} color="#000000" size="lg" />
 
       <BellSvg color="#989898" onClick={(event) => onBellButtonClick(event)} />
     </div>

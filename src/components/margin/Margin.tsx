@@ -9,6 +9,7 @@ export const Margin = (props: IProps) => {
 
   const getMarginStyle = (direction: string, size: number) => {
     const marginSize = `${size * 4}px`;
+
     switch (direction) {
       case 'top':
         return { marginTop: marginSize };

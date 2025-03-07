@@ -1,10 +1,9 @@
 import { toastStore } from '@/store/toast';
 import ReactDOM from 'react-dom';
 import React, { useEffect, useRef } from 'react';
-import { onMessageListener, requestForToken } from '@/common/firebase-config';
+import { onMessageListener } from '@/common/firebase-config';
 import { useSetAtom } from 'jotai';
 import { useAtomValue } from 'jotai/index';
-import { useNavigate } from 'react-router-dom';
 
 interface IProps {
   message: string;
@@ -13,14 +12,20 @@ interface IProps {
 export const Toast = (props: IProps) => {
   const { message } = props;
 
-  const navigate = useNavigate();
-
   const isOpenToast = useAtomValue(toastStore.isOpenToast);
 
   const openToast = useSetAtom(toastStore.openToast);
   const closeToast = useSetAtom(toastStore.closeToast);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const onClickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation();
+
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+  };
 
   useEffect(() => {
     const messageListener = (payload: any) => {
@@ -62,7 +67,7 @@ export const Toast = (props: IProps) => {
   }
 
   return ReactDOM.createPortal(
-    <div className="toast-wrapper" onClick={() => navigate('/notification')}>
+    <div className="toast-wrapper" onClick={(event) => onClickHandler(event)}>
       <p className="whitespace-nowrap">{message}</p>
     </div>,
     document.getElementById('toast-root') as HTMLElement,

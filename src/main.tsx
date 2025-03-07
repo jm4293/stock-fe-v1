@@ -1,8 +1,17 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('../firebase-messaging-sw.js');
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+  navigator.serviceWorker
+    .register('../firebase-messaging-sw.js')
+    .then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope);
+    })
+    .catch((error) => {
+      console.error('Service Worker registration failed:', error);
+    });
+} else {
+  console.warn('This browser does not support the required APIs for Firebase Messaging.');
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

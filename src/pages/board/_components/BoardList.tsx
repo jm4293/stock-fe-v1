@@ -30,31 +30,31 @@ export const BoardList = () => {
             className="w-full flex flex-col gap-3 cursor-pointer"
             onClick={(event) => onClickHandler({ event, boardSeq: board.boardSeq })}>
             <div className="flex flex-col gap-1">
-              <Text className="font-bold" value={board.title} color="black" size="middle" />
+              <Text className="font-bold" value={board.title} color="#000000" />
               <div className="grid grid-cols-6">
-                <Text className="col-span-5 line-clamp-2" value={board.content} color="gray" />
-                <Text className="col-span-1 text-end" value={board.user.nickname} color="black" />
+                <Text className="col-span-5 line-clamp-2" value={board.content} color="#000000" />
+                <Text className="col-span-1 text-end" value={board.user.nickname} color="#000000" />
               </div>
             </div>
             <div className="flex justify-between">
               <div className="flex gap-4">
                 <div className="flex gap-1">
                   <HeartSvg color="#989898" />
-                  <Text value="0" color="gray" />
+                  <Text value="0" color="#000000" />
                 </div>
                 <div className="flex gap-1">
                   <CommentSvg color="#989898" />
-                  <Text value={String(board.commentTotal)} color="gray" />
+                  <Text value={String(board.commentTotal)} color="#000000" />
                 </div>
               </div>
               <div className="flex gap-1">
-                <Text value="조회수" color="black" />
-                <Text value={String(board.viewCount)} color="gray" />
+                <Text value="조회수" color="#000000" />
+                <Text value={String(board.viewCount)} color="#000000" />
               </div>
             </div>
           </div>
         ))
-      : [<Text value="게시글이 없습니다." color="black" size="middle" />];
+      : [<Text value="게시글이 없습니다." color="#000000" />];
   };
 
   return (

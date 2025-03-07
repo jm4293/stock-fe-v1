@@ -8,6 +8,8 @@ interface IProps {
 export const useMyInfoQuery = () => {
   const decryptEmail = localStorage.getItem('state');
 
+  console.log('decryptEmail', decryptEmail);
+
   return useQuery({
     queryKey: ['user-my-info'],
     queryFn: () => UserApi.getMyInfo(),

@@ -1,48 +1,39 @@
-import { useDeviceLayout } from '@/hooks/useDeviceLayout';
-
 interface IProps {
   value: string;
-  color: 'gray' | 'black' | 'red';
+  color: '#000000' | '#282828' | '#444444' | '#666666';
   id?: string;
-  size?: 'small' | 'middle' | 'large';
+  size?: 'sm' | 'base' | 'lg' | 'xl';
+  align?: 'left' | 'center' | 'right';
   onClick?: (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => void;
   className?: string;
 }
 
+const textColor = {
+  '#000000': 'text-black',
+  '#282828': 'text-[#282828]',
+  '#444444': 'text-[#444444]',
+  '#666666': 'text-[#666666]',
+};
+
+const textSize = {
+  sm: 'text-sm', // 14px
+  base: 'text-base', // 16px
+  lg: 'text-lg', // 18px
+  xl: 'text-xl', // 20px
+};
+
+const textAlign = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+};
+
 export const Text = (props: IProps) => {
-  const { value, color, id, size, onClick, className } = props;
-
-  const { isMobile } = useDeviceLayout();
-
-  const textColor = () => {
-    switch (color) {
-      case 'gray':
-        return 'text-[#989898]';
-      case 'black':
-        return 'text-black';
-      case 'red':
-        return 'text-red-400';
-      default:
-        return 'text-black';
-    }
-  };
-
-  const textSize = () => {
-    switch (size) {
-      case 'small':
-        return 'text-sm';
-      case 'middle':
-        return 'text-base';
-      case 'large':
-        return 'text-xl';
-      default:
-        return isMobile ? 'text-sm' : 'text-base';
-    }
-  };
+  const { value, id, color, size = 'base', align = 'left', onClick, className } = props;
 
   return (
     <p
-      className={`${textColor()} ${textSize()} ${onClick && 'cursor-pointer'} ${className}`}
+      className={`${textColor[color]} ${textSize[size]} ${textAlign[align]} ${onClick && 'cursor-pointer'} ${className}`}
       id={id}
       onClick={(event) => onClick && onClick(event)}
       style={{ wordBreak: 'break-word' }}>

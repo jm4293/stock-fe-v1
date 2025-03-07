@@ -55,7 +55,7 @@ export const NotificationList = () => {
               }>
               <div className="flex items-center gap-2">
                 {!notification.isRead && <div className="w-1.5 h-1.5 bg-yellow-300 rounded-3xl" />}
-                <Text value={notification.message} color="black" size="middle" />
+                <Text value={notification.message} color="#000000" />
               </div>
 
               <CloseSvg
@@ -66,11 +66,11 @@ export const NotificationList = () => {
               />
             </div>
             <div className="flex justify-between items-center">
-              <Text value={String(dayjs(notification.createdAt).format('YY-MM-DD HH:mm'))} color="gray" />
+              <Text value={String(dayjs(notification.createdAt).format('YY-MM-DD HH:mm'))} color="#000000" />
             </div>
           </div>
         ))
-      : [<Text value="알림이 없습니다." color="black" size="middle" />];
+      : [<Text value="알림이 없습니다." color="#000000" />];
   };
 
   return (
@@ -78,7 +78,7 @@ export const NotificationList = () => {
       total={data?.[0].data.data.total}
       renderItem={
         <div className="flex justify-end items-center">
-          <Text value="모두읽기" color="black" onClick={(event) => onClickReadAllHandler(event)} />
+          <Text value="모두읽기" color="#000000" onClick={(event) => onClickReadAllHandler(event)} />
         </div>
       }
       children={

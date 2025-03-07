@@ -28,14 +28,14 @@ export const MyPageBoard = () => {
         key={board.boardSeq}
         className="w-full flex flex-col gap-1 cursor-pointer"
         onClick={(event) => onClickHandler({ event, boardSeq: board.boardSeq })}>
-        <Text className="font-bold" value={board.title} color="black" size="middle" />
+        <Text className="font-bold" value={board.title} color="#000000" />
 
-        <Text className="col-span-5 line-clamp-2" value={board.content} color="gray" />
+        <Text className="col-span-5 line-clamp-2" value={board.content} color="#000000" />
 
         <Text
           className="col-span-5 line-clamp-2"
           value={dayjs(board.createdAt).format('YY-MM-DD HH:mm')}
-          color="black"
+          color="#000000"
         />
       </div>
     ));

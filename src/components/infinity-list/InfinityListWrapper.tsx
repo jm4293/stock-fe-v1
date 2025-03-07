@@ -13,10 +13,10 @@ export const InfinityListWrapper = (props: IProps) => {
     <div className="flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-1">
-          <Text value="총" color="black" size="large" />
+          <Text value="총" color="#000000" size="lg" />
           <div className="flex">
-            <Text value={String(total)} color="gray" />
-            <Text value="개" color="gray" />
+            <Text value={String(total)} color="#000000" />
+            <Text value="개" color="#000000" />
           </div>
         </div>
 
