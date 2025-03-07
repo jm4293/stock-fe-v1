@@ -38,9 +38,10 @@ export function InfinityList<T>(props: IProps<T>) {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return (
-    <div className="flex flex-col items-center gap-6">
-      {data.map(renderItem)}
-      <div ref={loadMoreRef} className="h-10 flex justify-center items-center">
+    <div className="flex flex-col items-center">
+      <div className="w-full">{data.map(renderItem)}</div>
+
+      <div ref={loadMoreRef} className="flex justify-center items-center">
         {isFetchingNextPage && <Loading />}
       </div>
     </div>

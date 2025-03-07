@@ -23,6 +23,8 @@ export const Header = () => {
         return '게시판';
       case 'mypage':
         return '마이페이지';
+      case 'notification':
+        return '알림';
       default:
         return '홈';
     }

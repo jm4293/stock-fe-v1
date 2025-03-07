@@ -4,7 +4,6 @@ import { useAtomValue } from 'jotai/index';
 import { jwtStore } from '@/store/jwt';
 import { BoardList } from '@/pages/board/_components';
 import { BoardRegisterSvg } from '@/asset/svg';
-import { Text } from '@/components/text';
 
 export const Board = () => {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ export const Board = () => {
   };
 
   return (
-    <>
+    <div>
       <BoardList />
 
       {jwt && (
@@ -26,6 +25,6 @@ export const Board = () => {
           <BoardRegisterSvg color="#989898" onClick={onClickHandler} />
         </div>
       )}
-    </>
+    </div>
   );
 };

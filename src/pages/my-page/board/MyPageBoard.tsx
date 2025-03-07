@@ -1,6 +1,6 @@
 import { Text } from '@/components/text';
 import { useBoardListMineQuery } from '@/hooks/board';
-import { InfinityList } from '@/components/infinity-list';
+import { InfinityList, InfinityListWrapper } from '@/components/infinity-list';
 import { AxiosResponse } from 'axios';
 import { ResConfig } from '@/types/res.config';
 import { IBoardListRes } from '@/types/res/board';
@@ -42,22 +42,17 @@ export const MyPageBoard = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-1">
-        <Text value="작성한 게시글" color="black" size="large" />
-        <div className="flex">
-          <Text value={String(data?.[0].data.data.total ?? 0)} color="gray" />
-          <Text value="개" color="gray" />
-        </div>
-      </div>
-
-      <InfinityList<AxiosResponse<ResConfig<IBoardListRes>, any>>
-        data={data || []}
-        renderItem={renderItem}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
-        isFetchingNextPage={isFetchingNextPage}
-      />
-    </div>
+    <InfinityListWrapper
+      total={data?.[0].data.data.total}
+      children={
+        <InfinityList<AxiosResponse<ResConfig<IBoardListRes>, any>>
+          data={data || []}
+          renderItem={renderItem}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+        />
+      }
+    />
   );
 };

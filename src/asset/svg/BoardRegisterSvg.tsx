@@ -9,7 +9,7 @@ export const BoardRegisterSvg = (props: IProps) => {
 
   return (
     <svg
-      width={isMobile ? '60' : '90'}
+      width={isMobile ? '52' : '68'}
       height={isMobile ? '52' : '68'}
       viewBox="0 0 100 100"
       fill="none"
