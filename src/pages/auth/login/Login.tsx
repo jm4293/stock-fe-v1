@@ -79,6 +79,26 @@ export const Login = () => {
     }
   };
 
+  const onKeyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    event.stopPropagation();
+
+    if (event.key !== 'Enter') {
+      return;
+    }
+
+    if (!email) {
+      alert('이메일을 입력해주세요.');
+      return;
+    }
+
+    if (!password) {
+      alert('비밀번호를 입력해주세요.');
+      return;
+    }
+
+    onLoginEmailMutation.mutate({ email, password });
+  };
+
   useEffect(() => {
     if (provider) {
       switch (provider) {
@@ -119,7 +139,13 @@ export const Login = () => {
 
       <div className="w-full flex flex-col gap-4">
         <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="이메일 주소" />
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호" />
+        <Input
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          onKeyDown={(event) => onKeyDownHandler(event)}
+          placeholder="비밀번호"
+        />
       </div>
 
       <Margin direction="bottom" size={14} />

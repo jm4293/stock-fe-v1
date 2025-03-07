@@ -14,6 +14,7 @@ interface IProps {
   className?: string;
   isConfirm?: boolean;
   onClick?: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
 }
 
@@ -31,6 +32,7 @@ export const Input = (props: IProps) => {
     className,
     isConfirm,
     onClick,
+    onKeyDown,
     children,
   } = props;
 
@@ -56,6 +58,7 @@ export const Input = (props: IProps) => {
         type={type}
         value={value}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         placeholder={`${optional ? '[선택] ' : ''}${placeholder}`}
         disabled={disabled}
       />
