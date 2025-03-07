@@ -6,6 +6,7 @@ import { Stock } from 'pages/stock';
 import { Board, BoardDetail } from '@/pages/board';
 import { MyPage, MyPageBoard, MyPageBoardComment } from '@/pages/my-page';
 import { SignUp } from '@/pages/auth/sign-up';
+import { Notification } from '@/pages/notification';
 
 export const Router = () => {
   // const _BASE_URL = process.env.PUBLIC_URL;
@@ -27,6 +28,7 @@ export const Router = () => {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypage/board" element={<MyPageBoard />} />
           <Route path="/mypage/comment" element={<MyPageBoardComment />} />
+          <Route path="/notification" element={<Notification />} />
         </Route>
       </Routes>
     </BrowserRouter>
