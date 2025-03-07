@@ -76,12 +76,13 @@ export const NotificationList = () => {
   return (
     <InfinityListWrapper
       total={data?.[0].data.data.total}
+      renderItem={
+        <div className="flex justify-end items-center">
+          <Text value="모두읽기" color="black" onClick={(event) => onClickReadAllHandler(event)} />
+        </div>
+      }
       children={
         <div className="w-full">
-          <div className="flex justify-end items-center">
-            <Text value="모두읽기" color="black" onClick={(event) => onClickReadAllHandler(event)} />
-          </div>
-
           <InfinityList<AxiosResponse<ResConfig<INotificationListRes>, any>>
             data={data || []}
             renderItem={renderItem}
