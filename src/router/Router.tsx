@@ -7,6 +7,7 @@ import { Board, BoardDetail } from '@/pages/board';
 import { MyPage, MyPageBoard, MyPageBoardComment } from '@/pages/my-page';
 import { SignUp } from '@/pages/auth/sign-up';
 import { Notification } from '@/pages/notification';
+import { NotFound } from '@/components/not-found';
 
 export const Router = () => {
   // const _BASE_URL = process.env.PUBLIC_URL;
@@ -30,6 +31,8 @@ export const Router = () => {
           <Route path="/mypage/comment" element={<MyPageBoardComment />} />
           <Route path="/notification" element={<Notification />} />
         </Route>
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
