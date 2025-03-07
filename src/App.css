@@ -14,12 +14,12 @@ input, button {
 
 input {
   border-width: 1px;
-  border-radius: 0.75rem
+  border-radius: 0.5rem
 }
 
 button {
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem
 }
 
 *::-webkit-scrollbar{
