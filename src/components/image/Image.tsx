@@ -1,5 +1,6 @@
 import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 import { ImageTypeEnum } from 'constant/enum';
+import { ProfileSvg } from '@/asset/svg';
 
 interface IProps {
   src: string;
@@ -44,6 +45,6 @@ export const Image = (props: IProps) => {
       onClick={(event) => onClick && onClick(event)}
     />
   ) : (
-    <></>
+    <ProfileSvg />
   );
 };

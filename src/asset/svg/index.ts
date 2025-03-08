@@ -11,3 +11,4 @@ export * from './ConfirmSvg';
 export * from './HeartSvg';
 export * from './OAuthGoogleButtonSvg';
 export * from './OAuthGoogleSvg';
+export * from './ProfileSvg';
