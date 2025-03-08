@@ -14,6 +14,8 @@ interface IProps {
 export const BoardCommentList = (props: IProps) => {
   const { boardSeq } = props;
 
+  const state = localStorage.getItem('state');
+
   const [comment, setComment] = useState('');
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useBoardCommentListQuery({
@@ -62,10 +64,14 @@ export const BoardCommentList = (props: IProps) => {
                     />
                     <Text value={boardComment.user.nickname} color="#000000" />
                   </div>
-                  <CloseSvg
-                    color="#989898"
-                    onClick={(event) => onDeleteClickHandler({ event, boardCommentSeq: boardComment.boardCommentSeq })}
-                  />
+                  {state && (
+                    <CloseSvg
+                      color="#989898"
+                      onClick={(event) =>
+                        onDeleteClickHandler({ event, boardCommentSeq: boardComment.boardCommentSeq })
+                      }
+                    />
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1">
@@ -86,15 +92,17 @@ export const BoardCommentList = (props: IProps) => {
         </button>
       )}
 
-      <Input
-        type="text"
-        title="댓글"
-        value={comment}
-        onChange={(event) => setComment(event.target.value)}
-        placeholder="댓글을 입력해주세요"
-        isConfirm
-        onClick={(event) => onClickHandler(event)}
-      />
+      {state && (
+        <Input
+          type="text"
+          title="댓글"
+          value={comment}
+          onChange={(event) => setComment(event.target.value)}
+          placeholder="댓글을 입력해주세요"
+          isConfirm
+          onClick={(event) => onClickHandler(event)}
+        />
+      )}
     </div>
   );
 };

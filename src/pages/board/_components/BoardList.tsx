@@ -33,7 +33,11 @@ export const BoardList = () => {
               <Text className="font-bold" value={board.title} color="#000000" />
               <div className="grid grid-cols-6">
                 <Text className="col-span-5 line-clamp-2" value={board.content} color="#000000" />
-                <Text className="col-span-1 text-end" value={board.user.nickname} color="#000000" />
+
+                <div className="flex justify-end gap-1 col-span-1">
+                  <Text value="작성자" color="#000000" />
+                  <Text value={board.user.nickname} color="#000000" />
+                </div>
               </div>
             </div>
             <div className="flex justify-between">
@@ -60,7 +64,7 @@ export const BoardList = () => {
   return (
     <InfinityListWrapper
       total={data?.[0].data.data.total}
-      children={
+      renderList={
         <InfinityList<AxiosResponse<ResConfig<IBoardListRes>, any>>
           data={data || []}
           renderItem={renderItem}

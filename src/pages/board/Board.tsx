@@ -1,7 +1,5 @@
 import { useDeviceLayout } from '@/hooks/useDeviceLayout';
 import { useNavigate } from 'react-router-dom';
-import { useAtomValue } from 'jotai/index';
-import { jwtStore } from '@/store/jwt';
 import { BoardList } from '@/pages/board/_components';
 import { BoardRegisterSvg } from '@/asset/svg';
 
@@ -9,7 +7,7 @@ export const Board = () => {
   const navigate = useNavigate();
   const { isMobile } = useDeviceLayout();
 
-  const jwt = useAtomValue(jwtStore.getJwt);
+  const state = localStorage.getItem('state');
 
   const onClickHandler = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     event.stopPropagation();
@@ -20,7 +18,7 @@ export const Board = () => {
     <div>
       <BoardList />
 
-      {jwt && (
+      {state && (
         <div className={`${isMobile ? 'bottom-24' : 'bottom-36'} absolute right-4`}>
           <BoardRegisterSvg color="#989898" onClick={onClickHandler} />
         </div>

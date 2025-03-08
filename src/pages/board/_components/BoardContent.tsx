@@ -15,6 +15,8 @@ interface IProps {
 export const BoardContent = (props: IProps) => {
   const { boardSeq } = props;
 
+  const state = localStorage.getItem('state');
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -53,12 +55,12 @@ export const BoardContent = (props: IProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex justify-between items-center">
         <Text value="게시글" color="#000000" size="lg" />
-        {boardSeq && <CloseSvg color="#989898" onClick={(event) => onDeleteClickHandler(event)} />}
+        {boardSeq && state && <CloseSvg color="#989898" onClick={(event) => onDeleteClickHandler(event)} />}
       </div>
 
       <div className={`${boardSeq ? 'grid grid-cols-6 gap-4' : ''}`}>
         {boardSeq && boardDetailQuery.isSuccess && (
-          <div className="flex flex-col justify-center items-center gap-2">
+          <div className="flex flex-col justify-center items-center gap-1">
             <Image type={ImageTypeEnum.THUMBNAIL} src={boardDetailQuery.data.thumbnail} alt="board-detail-thumbnail" />
             <p>{boardDetailQuery.data?.nickname}</p>
           </div>
@@ -80,7 +82,7 @@ export const BoardContent = (props: IProps) => {
         </div>
       </div>
 
-      <Button text={`${boardSeq ? '수정' : '저장'}하기`} onClick={(event) => onClickHandler(event)} />
+      {state && <Button text={`${boardSeq ? '수정' : '저장'}하기`} onClick={(event) => onClickHandler(event)} />}
     </div>
   );
 };
