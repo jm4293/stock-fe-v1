@@ -28,9 +28,15 @@ export const MyPageBoard = () => {
         key={board.boardSeq}
         className="w-full flex flex-col gap-1 cursor-pointer"
         onClick={(event) => onClickHandler({ event, boardSeq: board.boardSeq })}>
-        <Text className="font-bold" value={board.title} color="#000000" />
+        <div className="flex gap-1">
+          <Text value="게시글 타이틀: " color="#000000" />
+          <Text className="font-bold" value={board.title} color="#000000" />
+        </div>
 
-        <Text className="col-span-5 line-clamp-2" value={board.content} color="#000000" />
+        <div className="flex gap-1">
+          <Text value="게시글 내용: " color="#000000" />
+          <Text className="col-span-5 line-clamp-2" value={board.content} color="#000000" />
+        </div>
 
         <Text
           className="col-span-5 line-clamp-2"
@@ -44,7 +50,7 @@ export const MyPageBoard = () => {
   return (
     <InfinityListWrapper
       total={data?.[0].data.data.total}
-      children={
+      renderList={
         <InfinityList<AxiosResponse<ResConfig<IBoardListRes>, any>>
           data={data || []}
           renderItem={renderItem}

@@ -29,11 +29,14 @@ export const MyPageBoardComment = () => {
         className="w-full flex flex-col gap-3 cursor-pointer"
         onClick={(event) => onClickHandler({ event, boardSeq: boardComment.board.boardSeq })}>
         <div className="flex flex-col gap-1">
-          <Text className="line-clamp-1" value={boardComment.content} color="#000000" />
+          <div className="flex gap-1">
+            <Text value="댓글: " color="#000000" />
+            <Text className="line-clamp-1" value={boardComment.content} color="#000000" />
+          </div>
 
           <div className="flex gap-1">
             <Text value="게시글: " color="#000000" />
-            <Text className="col-span-5 line-clamp-2" value={boardComment.board.title} color="gray" />
+            <Text className="col-span-5 line-clamp-2" value={boardComment.board.title} color="#000000" />
           </div>
 
           <Text
@@ -49,7 +52,7 @@ export const MyPageBoardComment = () => {
   return (
     <InfinityListWrapper
       total={data?.[0].data.data.total}
-      children={
+      renderList={
         <InfinityList<AxiosResponse<ResConfig<IBoardCommentListRes>, any>>
           data={data || []}
           renderItem={renderItem}

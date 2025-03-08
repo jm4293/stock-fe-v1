@@ -2,12 +2,12 @@ import { Text } from '@/components/text';
 
 interface IProps {
   total: number | undefined;
-  renderItem?: JSX.Element;
-  children?: React.ReactNode;
+  renderHeader?: JSX.Element;
+  renderList?: JSX.Element;
 }
 
 export const InfinityListWrapper = (props: IProps) => {
-  const { total = 0, renderItem, children } = props;
+  const { total = 0, renderHeader, renderList } = props;
 
   return (
     <div className="flex flex-col gap-4">
@@ -20,10 +20,10 @@ export const InfinityListWrapper = (props: IProps) => {
           </div>
         </div>
 
-        {renderItem && <div>{renderItem}</div>}
+        {renderHeader && <div>{renderHeader}</div>}
       </div>
 
-      <div>{children}</div>
+      <div>{renderList}</div>
     </div>
   );
 };
