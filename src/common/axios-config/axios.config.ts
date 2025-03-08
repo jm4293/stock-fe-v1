@@ -76,9 +76,9 @@ export class AxiosConfig {
           const { message } = error.response.data;
           alert(message);
         } else if (error.response?.status === 401) {
-          const decryptEmail = localStorage.getItem('state');
+          const state = localStorage.getItem('state');
 
-          if (!decryptEmail) {
+          if (!state) {
             return;
           }
 
@@ -91,7 +91,7 @@ export class AxiosConfig {
 
           return this._axiosInstance(originalRequest);
         } else if (error.response?.status === 403) {
-          localStorage.removeItem('state');
+          localStorage.clear();
           window.location.replace('/home');
 
           alert('세션이 만료되었습니다.');

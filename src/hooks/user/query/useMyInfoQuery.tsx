@@ -6,9 +6,7 @@ interface IProps {
 }
 
 export const useMyInfoQuery = () => {
-  const decryptEmail = localStorage.getItem('state');
-
-  console.log('decryptEmail', decryptEmail);
+  const state = localStorage.getItem('state');
 
   return useQuery({
     queryKey: ['user-my-info'],
@@ -19,6 +17,6 @@ export const useMyInfoQuery = () => {
       return { email, name, nickname, thumbnail, userAccountType };
     },
     staleTime: 1000 * 60 * 60 * 6, // 6시간,
-    enabled: !!decryptEmail,
+    enabled: !!state,
   });
 };

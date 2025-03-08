@@ -4,7 +4,7 @@ import { ICheckEmailDto, ILoginEmailDto, ILoginOauthDto, ISignUpDto } from 'type
 import { useSetAtom } from 'jotai';
 import { jwtStore } from '@/store/jwt';
 import CryptoJS from 'crypto-js';
-import { getMessaging, deleteToken } from 'firebase/messaging';
+import { deleteToken, getMessaging } from 'firebase/messaging';
 import { requestForToken } from '@/common/firebase-config';
 import AuthApi from '@/api-url/auth/auth.api';
 import UserApi from '@/api-url/user/user.api';
@@ -32,9 +32,8 @@ export const useAuthMutation = () => {
     onSuccess: async (res) => {
       const { accessToken, email } = res.data.data;
 
-      const encryptedEmail = CryptoJS.AES.encrypt(email, import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY).toString();
-      localStorage.setItem('state', encryptedEmail);
-      setJwtToken(accessToken);
+      _registerLocalStorage(email);
+      _registerAccessToken(accessToken);
 
       await _registerFirebaseToken();
 
@@ -50,9 +49,8 @@ export const useAuthMutation = () => {
     onSuccess: async (res) => {
       const { accessToken, email } = res.data.data;
 
-      const encryptedEmail = CryptoJS.AES.encrypt(email, import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY).toString();
-      localStorage.setItem('state', encryptedEmail);
-      setJwtToken(accessToken);
+      _registerLocalStorage(email);
+      _registerAccessToken(accessToken);
 
       await _registerFirebaseToken();
 
@@ -73,11 +71,10 @@ export const useAuthMutation = () => {
       queryClient.clear();
 
       const firebase_messaging = getMessaging();
-
       await deleteToken(firebase_messaging);
 
-      localStorage.removeItem('state');
-      setJwtToken('');
+      localStorage.clear();
+      setJwtToken(null);
     },
     onError: (err) => {
       console.error(err);
@@ -91,17 +88,29 @@ export const useAuthMutation = () => {
 
       setJwtToken(accessToken);
     },
-    onError: (err) => {
-      // alert('로그인이 필요합니다.');
-      // navigate('/auth/login', { replace: true });
-    },
+    // onError: (err) => {
+    // alert('로그인이 필요합니다.');
+    // navigate('/auth/login', { replace: true });
+    // },
   });
+
+  const _registerLocalStorage = (email: string) => {
+    const encryptedEmail = CryptoJS.AES.encrypt(email, import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY).toString();
+    localStorage.setItem('state', encryptedEmail);
+  };
+
+  const _registerAccessToken = (accessToken: string) => {
+    setJwtToken(accessToken);
+  };
 
   const _registerFirebaseToken = async () => {
     const token = await requestForToken();
 
     if (token) {
       await UserApi.postRegisterPushToken({ pushToken: token });
+
+      const encryptedToken = CryptoJS.AES.encrypt(token, import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY).toString();
+      localStorage.setItem('FT', encryptedToken);
     }
   };
 

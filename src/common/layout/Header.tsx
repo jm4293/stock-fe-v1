@@ -7,7 +7,7 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const decryptEmail = localStorage.getItem('state');
+  const state = localStorage.getItem('state');
 
   const pathName = () => {
     const { pathname } = location;
@@ -39,7 +39,7 @@ export const Header = () => {
   const onBellButtonClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     event.stopPropagation();
 
-    if (!decryptEmail) {
+    if (!state) {
       alert('로그인이 필요한 서비스입니다.');
       navigate('/auth/login');
     } else {
