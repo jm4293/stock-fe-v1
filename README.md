@@ -1,5 +1,8 @@
 ## stock-fe
 
+## 와이어 프레임
+- [와이어 프레임](https://www.figma.com/design/WJVHCkKCq0x3zMTkXAUsuK/peek?node-id=0-1&t=eD87MfR0Sk1qeDAk-1)
+
 ## cra -> vite 마이그레이션
 1. 
 
