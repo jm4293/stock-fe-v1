@@ -51,8 +51,8 @@ export const Login = () => {
       case 'find-password':
         navigate('/auth/find-password');
         break;
-      case 'sign-up':
-        navigate('/auth/sign-up');
+      case 'register':
+        navigate('/auth/register');
         break;
       default:
         break;
@@ -139,7 +139,7 @@ export const Login = () => {
           <div className="w-[1px] h-2/3 bg-[#B5B5B5]" />
           <Text value="비밀번호 찾기" id="find-password" color="#000000" onClick={onClickHandler} />
           <div className="w-[1px] h-2/3 bg-[#B5B5B5]" />
-          <Text value="회원가입" id="sign-up" color="#000000" onClick={onClickHandler} />
+          <Text value="회원가입" id="register" color="#000000" onClick={onClickHandler} />
         </div>
       </div>
 

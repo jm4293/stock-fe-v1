@@ -11,7 +11,7 @@ import { ImageTypeEnum } from 'constant/enum';
 import { ISignUpDto } from '@/types/dto';
 import { useNavigate } from 'react-router-dom';
 
-export const SignUp = () => {
+export const Register = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<ISignUpDto>({

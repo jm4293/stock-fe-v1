@@ -5,7 +5,7 @@ import { Home } from '@/pages/home';
 import { Stock } from 'pages/stock';
 import { Board, BoardDetail } from '@/pages/board';
 import { MyPage, MyPageBoard, MyPageBoardComment } from '@/pages/my-page';
-import { SignUp } from '@/pages/auth/sign-up';
+import { Register } from 'pages/auth/register';
 import { Notification } from '@/pages/notification';
 import { NotFound } from '@/components/not-found';
 
@@ -18,7 +18,7 @@ export const Router = () => {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/login/:provider" element={<Login />} />
-        <Route path="/auth/sign-up" element={<SignUp />} />
+        <Route path="/auth/register" element={<Register />} />
 
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
