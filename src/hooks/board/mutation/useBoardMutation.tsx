@@ -40,9 +40,20 @@ export const useBoardMutation = () => {
     },
   });
 
+  const onBoardLikeMutation = useMutation({
+    mutationFn: (boardSeq: number) => BoardApi.boardLike(boardSeq),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['board-list'] });
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+
   return {
     onCreateBoardMutation,
     onUpdateBoardMutation,
     onDeleteBoardMutation,
+    onBoardLikeMutation,
   };
 };

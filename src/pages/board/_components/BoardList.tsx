@@ -1,4 +1,4 @@
-import { useBoardListQuery } from '@/hooks/board';
+import { useBoardListQuery, useBoardMutation } from '@/hooks/board';
 import { CommentSvg, HeartSvg } from '@/asset/svg';
 import { Text } from '@/components/text';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,24 @@ import { IBoardListRes } from '@/types/res/board';
 
 export const BoardList = () => {
   const navigate = useNavigate();
+
+  const state = localStorage.getItem('state');
+
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useBoardListQuery();
+
+  const { onBoardLikeMutation } = useBoardMutation();
+
+  const onLikeClickHandler = (params: { event: React.MouseEvent<SVGSVGElement, MouseEvent>; boardSeq: number }) => {
+    const { event, boardSeq } = params;
+
+    event.stopPropagation();
+
+    if (!state) {
+      return;
+    }
+
+    onBoardLikeMutation.mutate(boardSeq);
+  };
 
   const onClickHandler = (params: { event: React.MouseEvent<HTMLDivElement, MouseEvent>; boardSeq: number }) => {
     const { event, boardSeq } = params;
@@ -43,12 +60,16 @@ export const BoardList = () => {
             <div className="flex justify-between">
               <div className="flex gap-4">
                 <div className="flex gap-1">
-                  <HeartSvg color="#989898" />
-                  <Text value="0" color="#000000" />
+                  <HeartSvg
+                    color="#989898"
+                    onClick={(event) => onLikeClickHandler({ event, boardSeq: board.boardSeq })}
+                    isFilled={board.isLiked}
+                  />
+                  <Text value={String(board.likeCount)} color="#000000" />
                 </div>
                 <div className="flex gap-1">
                   <CommentSvg color="#989898" />
-                  <Text value={String(board.commentTotal)} color="#000000" />
+                  <Text value={String(board.commentCount)} color="#000000" />
                 </div>
               </div>
               <div className="flex gap-1">

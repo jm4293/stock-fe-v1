@@ -11,7 +11,9 @@ export interface IBoard {
   deletedAt: Date | null;
   user: IUser;
   boardComments: IBoardComment[];
-  commentTotal: number;
+  likeCount: number;
+  commentCount: number;
+  isLiked: boolean;
 }
 
 export interface IBoardComment {

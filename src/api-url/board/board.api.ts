@@ -77,6 +77,11 @@ class BoardApi extends AxiosConfig {
 
     return await this.delete<null, null>({ url: `${this._baseURL}/${boardSeq}/comment/${boardCommentSeq}` });
   }
+
+  // 게시판 좋아요(찜)
+  async boardLike(boardSeq: number) {
+    return await this.post<null, {}>({ url: `${this._baseURL}/${boardSeq}/like`, data: {} });
+  }
 }
 
 export default new BoardApi();
