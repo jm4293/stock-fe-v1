@@ -49,8 +49,6 @@ export class AxiosConfig {
       (config) => {
         const sessionState = sessionStorage.getItem('state');
 
-        console.log('sessionState', sessionState);
-
         if (sessionState) {
           const decryptedState = CryptoJS.AES.decrypt(
             sessionState,

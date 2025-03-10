@@ -22,7 +22,6 @@ export const requestForToken = async (): Promise<string | null> => {
     if (token) {
       return token;
     } else {
-      console.log('No registration token available.');
       return null;
     }
   } catch (error) {
@@ -34,7 +33,6 @@ export const requestForToken = async (): Promise<string | null> => {
 // 포그라운드 알림 수신
 export const onMessageListener = (messageListener: (payload: any) => void): (() => void) => {
   return onMessage(messaging, (payload) => {
-    console.log('Foreground Message received:', payload);
     messageListener(payload);
   });
 };

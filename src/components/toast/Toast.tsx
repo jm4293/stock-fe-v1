@@ -29,7 +29,6 @@ export const Toast = (props: IProps) => {
 
   useEffect(() => {
     const messageListener = (payload: any) => {
-      console.log('Received in foreground:', payload);
       openToast(payload.notification.body);
 
       if (timerRef.current) {

@@ -9,8 +9,6 @@ export const HeartSvg = (props: IProps) => {
   const { color, onClick, className, isFilled = false } = props;
   const { isMobile } = useDeviceLayout();
 
-  console.log('HeartSvg is rendering!', isFilled);
-
   return (
     <svg
       width={isMobile ? '22' : '30'}
