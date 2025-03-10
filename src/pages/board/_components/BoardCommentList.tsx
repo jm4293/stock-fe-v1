@@ -14,7 +14,7 @@ interface IProps {
 export const BoardCommentList = (props: IProps) => {
   const { boardSeq } = props;
 
-  const state = localStorage.getItem('state');
+  const state = sessionStorage.getItem('state');
 
   const [comment, setComment] = useState('');
 

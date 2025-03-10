@@ -3,6 +3,7 @@ import { ResConfig } from '@/types/res.config';
 import { getDefaultStore } from 'jotai';
 import { jwtStore } from '@/store/jwt';
 import AuthApi from '@/api-url/auth/auth.api';
+import CryptoJS from 'crypto-js';
 
 interface IGetReq<D> {
   url: string;
@@ -46,11 +47,23 @@ export class AxiosConfig {
 
     this._axiosInstance.interceptors.request.use(
       (config) => {
-        const store = getDefaultStore();
-        const token = store.get(jwtStore.getJwt);
+        const sessionState = sessionStorage.getItem('state');
 
-        if (token && config.headers) {
-          config.headers.set('Authorization', `Bearer ${token}`);
+        console.log('sessionState', sessionState);
+
+        if (sessionState) {
+          const decryptedState = CryptoJS.AES.decrypt(
+            sessionState,
+            import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY,
+          ).toString(CryptoJS.enc.Utf8);
+
+          const state = JSON.parse(decryptedState);
+
+          if (state && config.headers) {
+            const { accessToken } = state;
+
+            config.headers['Authorization'] = `Bearer ${accessToken}`;
+          }
         }
 
         return config;
@@ -76,16 +89,15 @@ export class AxiosConfig {
           const { message } = error.response.data;
           alert(message);
         } else if (error.response?.status === 401) {
-          const state = localStorage.getItem('state');
-
-          if (!state) {
-            return;
-          }
-
           const refreshResponse = await AuthApi.postRefreshToken();
           const newAccessToken = refreshResponse.data.data.accessToken;
 
-          store.set(jwtStore.getJwt, newAccessToken);
+          const encryptedState = CryptoJS.AES.encrypt(
+            JSON.stringify({ accessToken: newAccessToken }),
+            import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY,
+          ).toString();
+
+          sessionStorage.setItem('state', encryptedState);
 
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
 

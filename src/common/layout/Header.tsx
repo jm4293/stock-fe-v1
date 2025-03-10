@@ -18,7 +18,7 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const state = localStorage.getItem('state');
+  const state = sessionStorage.getItem('state');
 
   const onBackButtonClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     event.stopPropagation();

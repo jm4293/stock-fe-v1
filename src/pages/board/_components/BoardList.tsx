@@ -11,7 +11,7 @@ import { IBoardListRes } from '@/types/res/board';
 export const BoardList = () => {
   const navigate = useNavigate();
 
-  const state = localStorage.getItem('state');
+  const state = sessionStorage.getItem('state');
 
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useBoardListQuery();
 

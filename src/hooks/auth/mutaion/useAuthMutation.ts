@@ -1,19 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ICheckEmailDto, ILoginEmailDto, ILoginOauthDto, ISignUpDto } from 'types/dto';
-import { useSetAtom } from 'jotai';
-import { jwtStore } from '@/store/jwt';
 import CryptoJS from 'crypto-js';
 import { deleteToken, getMessaging } from 'firebase/messaging';
 import { requestForToken } from '@/common/firebase-config';
 import AuthApi from '@/api-url/auth/auth.api';
 import UserApi from '@/api-url/user/user.api';
+import axios from 'axios';
 
 export const useAuthMutation = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-
-  const setJwtToken = useSetAtom(jwtStore.setJwt);
 
   const onSignUpMutation = useMutation({
     mutationFn: (dto: ISignUpDto) => AuthApi.postSignUp(dto),
@@ -30,10 +27,9 @@ export const useAuthMutation = () => {
   const onLoginEmailMutation = useMutation({
     mutationFn: (dto: ILoginEmailDto) => AuthApi.postSignInEmail(dto),
     onSuccess: async (res) => {
-      const { accessToken, email } = res.data.data;
+      const { accessToken } = res.data.data;
 
-      _registerLocalStorage(email);
-      _registerAccessToken(accessToken);
+      _registerSessionStorage({ accessToken });
 
       await _registerFirebaseToken();
 
@@ -47,10 +43,9 @@ export const useAuthMutation = () => {
   const onLoginOauthMutation = useMutation({
     mutationFn: (dto: ILoginOauthDto) => AuthApi.postSignInOauth(dto),
     onSuccess: async (res) => {
-      const { accessToken, email } = res.data.data;
+      const { accessToken } = res.data.data;
 
-      _registerLocalStorage(email);
-      _registerAccessToken(accessToken);
+      _registerSessionStorage({ accessToken });
 
       await _registerFirebaseToken();
 
@@ -74,7 +69,8 @@ export const useAuthMutation = () => {
       await deleteToken(firebase_messaging);
 
       localStorage.clear();
-      setJwtToken(null);
+      sessionStorage.clear();
+      axios.defaults.headers.common = {};
     },
     onError: (err) => {
       console.error(err);
@@ -86,7 +82,7 @@ export const useAuthMutation = () => {
     onSuccess: (res) => {
       const { accessToken } = res.data.data;
 
-      setJwtToken(accessToken);
+      _registerSessionStorage({ accessToken });
     },
     // onError: (err) => {
     // alert('로그인이 필요합니다.');
@@ -94,13 +90,13 @@ export const useAuthMutation = () => {
     // },
   });
 
-  const _registerLocalStorage = (email: string) => {
-    const encryptedEmail = CryptoJS.AES.encrypt(email, import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY).toString();
-    localStorage.setItem('state', encryptedEmail);
-  };
+  const _registerSessionStorage = (params: { accessToken: string }) => {
+    const encryptedState = CryptoJS.AES.encrypt(
+      JSON.stringify(params),
+      import.meta.env.VITE_LOCAL_STORAGE_SECRET_KEY,
+    ).toString();
 
-  const _registerAccessToken = (accessToken: string) => {
-    setJwtToken(accessToken);
+    sessionStorage.setItem('state', encryptedState);
   };
 
   const _registerFirebaseToken = async () => {

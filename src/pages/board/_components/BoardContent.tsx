@@ -15,7 +15,7 @@ interface IProps {
 export const BoardContent = (props: IProps) => {
   const { boardSeq } = props;
 
-  const state = localStorage.getItem('state');
+  const state = sessionStorage.getItem('state');
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');

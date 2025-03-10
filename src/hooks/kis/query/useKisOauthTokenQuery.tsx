@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import KisApi from '@/api-url/kis/kis.api';
 
 export const useKisOauthTokenQuery = () => {
-  const state = localStorage.getItem('state');
+  const state = sessionStorage.getItem('state');
 
   return useQuery({
     queryKey: ['kis-oauth-token'],

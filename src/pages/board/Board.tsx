@@ -7,7 +7,7 @@ export const Board = () => {
   const navigate = useNavigate();
   const { isMobile } = useDeviceLayout();
 
-  const state = localStorage.getItem('state');
+  const state = sessionStorage.getItem('state');
 
   const onClickHandler = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     event.stopPropagation();
