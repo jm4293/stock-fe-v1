@@ -1,10 +1,11 @@
 import { AxiosConfig } from '@/common/axios-config';
+import { IKisOauthTokenRes } from '@/types/res';
 
 class KisApi extends AxiosConfig {
   private readonly _baseURL = '/kis';
 
   async getOauthToken() {
-    return await this.get({ url: `${this._baseURL}/oauth-token` });
+    return await this.get<IKisOauthTokenRes, null>({ url: `${this._baseURL}/oauth-token` });
   }
 
   async deleteOauthRevoke() {
