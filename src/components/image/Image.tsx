@@ -38,7 +38,7 @@ export const Image = (props: IProps) => {
   return src ? (
     <img
       className={`${onClick ? 'cursor-pointer' : ''} ${type === ImageTypeEnum.THUMBNAIL ? 'rounded-3xl' : ''} ${className}`}
-      src={src}
+      src={`${import.meta.env.VITE_IMAGE_URL}:${import.meta.env.VITE_IMAGE_PORT}${src}`}
       alt={alt}
       width={image_type()}
       height={image_type()}
