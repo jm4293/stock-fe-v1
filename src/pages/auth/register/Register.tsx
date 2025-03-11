@@ -1,13 +1,8 @@
 import { AuthLayout } from '@/pages/auth';
-import { Image } from '@/components/image';
-import logo from '@/asset/images/sign-in-logo.png';
-import { Margin } from '@/components/margin';
 import { Input } from '@/components/input';
 import { useState } from 'react';
 import { Button } from '@/components/button';
-import { Text } from '@/components/text';
 import { useAuthMutation } from '@/hooks/auth';
-import { ImageTypeEnum } from 'constant/enum';
 import { ISignUpDto } from '@/types/dto';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,6 +24,7 @@ export const Register = () => {
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+
     setFormData({ ...formData, [name]: value });
   };
 
@@ -112,7 +108,7 @@ export const Register = () => {
               <Button
                 text={`${confirmDuplicateEmail ? '완료' : '중복 확인'}`}
                 onClick={(event) => onDuplicateCheckHandler(event)}
-                disabled={onCheckEmailMutation.isPending}
+                disabled={onCheckEmailMutation.isPending || confirmDuplicateEmail}
               />
             </div>
           </div>

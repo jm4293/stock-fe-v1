@@ -85,7 +85,10 @@ export class AxiosConfig {
           window.location.href = redirect;
         } else if (error.response?.status === 400) {
           const { message } = error.response.data;
-          alert(message);
+
+          if (message) {
+            alert(message);
+          }
         } else if (error.response?.status === 401) {
           const refreshResponse = await AuthApi.postRefreshToken();
           const newAccessToken = refreshResponse.data.data.accessToken;
@@ -102,9 +105,10 @@ export class AxiosConfig {
           return this._axiosInstance(originalRequest);
         } else if (error.response?.status === 403) {
           localStorage.clear();
+          sessionStorage.clear();
           window.location.replace('/home');
 
-          alert('세션이 만료되었습니다.');
+          // alert('세션이 만료되었습니다.');
         }
 
         return Promise.reject(error);
