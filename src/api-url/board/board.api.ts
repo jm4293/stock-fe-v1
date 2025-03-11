@@ -42,7 +42,7 @@ class BoardApi extends AxiosConfig {
     const { boardSeq, pageParam } = params;
 
     return await this.get<IBoardCommentListRes, { pageParam: number }>({
-      url: `${this._baseURL}/${boardSeq}/comment`,
+      url: `${this._baseURL}/${boardSeq}/comments`,
       params: { pageParam },
     });
   }

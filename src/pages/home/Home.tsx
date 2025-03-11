@@ -2,6 +2,7 @@ import { useSetAtom } from 'jotai';
 import { modalStore } from '@/store/modal';
 import { toastStore } from '@/store/toast';
 import { useFileUpload } from '@/hooks/image/useImageUpload';
+import { RecentBoardList } from '@/pages/home/_compoenets';
 
 export const Home = () => {
   const openModal = useSetAtom(modalStore.openModal);
@@ -12,10 +13,10 @@ export const Home = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <button onClick={openModal}>Open Modal</button>
-      <button onClick={() => openToast('This is a toast message!')}>Open Toast</button>
+      {/*<button onClick={openModal}>Open Modal</button>*/}
+      {/*<button onClick={() => openToast('This is a toast message!')}>Open Toast</button>*/}
 
-      <FileUploadButton />
+      {/*<FileUploadButton />*/}
 
       {responseURL && (
         <div>
@@ -23,6 +24,8 @@ export const Home = () => {
           <p>{responseURL}</p>
         </div>
       )}
+
+      <RecentBoardList />
     </div>
   );
 };
